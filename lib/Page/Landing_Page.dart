@@ -2,7 +2,7 @@ import 'package:apobat/Component/CardCategory.dart';
 import 'package:flutter/material.dart';
 
 class Landing_Page extends StatefulWidget {
-  const Landing_Page({Key? key}) : super(key: key);
+  const Landing_Page({super.key});
 
   @override
   State<Landing_Page> createState() => _Landing_PageState();
