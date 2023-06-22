@@ -39,7 +39,7 @@ class _Landing_PageState extends State<Landing_Page> {
             leading: Padding(
               padding: const EdgeInsets.all(10.0),
               child: Image.asset(
-                "lib/Image/pills.png",
+                'lib/Image/pills.png',
               ),
             ),
             actions: [
