@@ -9,7 +9,7 @@ class CardCategory extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Image.asset('assets/images/flu.png',
+        Image.asset('lib/Image/flu.png',
           width: 50,
           height: 50,
         ),
