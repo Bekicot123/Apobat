@@ -56,7 +56,7 @@ class _Landing_PageState extends State<Landing_Page> {
                 child: const Center(
                   child: TextField(
                     decoration: InputDecoration(
-                      hintText: 'Cari obat',
+                      hintText: 'Cari Obat',
                       prefixIcon: Icon(Icons.search),
                     ),
                   ),
