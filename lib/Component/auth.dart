@@ -1,3 +1,4 @@
+import 'package:apobat/Component/NavBar.dart';
 import 'package:apobat/Page/Landing_Page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +15,7 @@ class AuthPage extends StatelessWidget{
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot){
           if(snapshot.hasData){
-            return Landing_Page();
+            return Navbar();
           }
           else{
             return LoginOrRegister();
