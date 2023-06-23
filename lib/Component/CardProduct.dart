@@ -27,7 +27,7 @@ class CardProduct extends StatelessWidget {
         SizedBox(
           height: 14,
         ),
-          Text("Rp.7000", style: TextStyle(color: Color(hexColor('#FF2929'))),
+          Text("Rp 7000", style: TextStyle(color: Color(hexColor('#FF2929'))),
           )
         ],
       ),
