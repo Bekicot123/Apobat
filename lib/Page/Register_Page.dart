@@ -1,18 +1,51 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:apobat/Component/Button.dart';
 import 'package:apobat/Component/TextField.dart';
 
-class RegisterPage extends StatelessWidget {
+class RegisterPage extends StatefulWidget {
   final Function()? onTap;
+
   RegisterPage({super.key, required this.onTap});
 
+  @override
+  State<RegisterPage> createState() => _RegisterPageState();
+}
+
+class _RegisterPageState extends State<RegisterPage> {
   final usernameController = TextEditingController();
-  final namaController     = TextEditingController();
-  final alamatController   = TextEditingController();
-  final emailController    = TextEditingController();
+  final namaController = TextEditingController();
+  final alamatController = TextEditingController();
+  final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
-  void signIn(){}
+  void signUSer() async {
+    await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      email: emailController.text.trim(),
+      password: passwordController.text.trim(),
+    );
+    addUserDetails(
+        usernameController.text,
+        namaController.text,
+        alamatController.text,
+        emailController.text,
+        passwordController.text
+    );
+  }
+
+  void addUserDetails(
+      String username, String namalengkap,
+      String alamat, String email, String pass) async {
+    await FirebaseFirestore.instance.collection('users').add({
+      'UserName':username,
+      'Nama_Lengkap':namalengkap,
+      'Alamat':alamat,
+      'Email':email,
+      'Password':pass,
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,10 +57,10 @@ class RegisterPage extends StatelessWidget {
             child: Column(
               children: [
                 SizedBox(
-                  height: 50,
+                  height: 10,
                 ),
                 Container(
-                  height: 140,
+                  height: 100,
                   child: Image.asset('lib/Image/pills.png'),
                 ),
                 SizedBox(
@@ -84,7 +117,7 @@ class RegisterPage extends StatelessWidget {
                 const SizedBox(height: 20,),
                 MyButton(
                   text: "Daftar",
-                  onTap: signIn,
+                  onTap: signUSer,
                 ),
                 const SizedBox(height: 20,),
                 Row(
@@ -98,7 +131,7 @@ class RegisterPage extends StatelessWidget {
                       width: 4,
                     ),
                     GestureDetector(
-                      onTap: onTap,
+                      onTap: widget.onTap,
                       child: Text(
                         'Masuk Disini',
                         style: TextStyle(color: Color(hexColor('#FFCD00'))),
@@ -114,6 +147,7 @@ class RegisterPage extends StatelessWidget {
     );
   }
 }
+
 
 int hexColor(String color) {
   String newColor = '0xff' + color;
