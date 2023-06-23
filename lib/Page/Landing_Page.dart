@@ -1,4 +1,7 @@
 import 'package:apobat/Component/CardCategory.dart';
+import 'package:apobat/Page/Akun_Page.dart';
+import 'package:apobat/Page/Cart_Page.dart';
+import 'package:apobat/Page/Home_Page.dart';
 import 'package:flutter/material.dart';
 
 class Landing_Page extends StatefulWidget {
@@ -9,25 +12,10 @@ class Landing_Page extends StatefulWidget {
 }
 
 class _Landing_PageState extends State<Landing_Page> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: BottomNavigationBar(
-        items: const [
-          BottomNavigationBarItem(
-            label: 'Beranda',
-            icon: Icon(Icons.home),
-          ),
-          BottomNavigationBarItem(
-            label: 'Keranjang',
-            icon: Icon(Icons.shopping_basket),
-          ),
-          BottomNavigationBarItem(
-            label: 'Akun',
-            icon: Icon(Icons.manage_accounts),
-          )
-        ],
-      ),
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
