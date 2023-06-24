@@ -15,7 +15,7 @@ class MyButtonCart extends StatelessWidget{
       onTap: onTap,
       child: Container(
         padding: EdgeInsets.all(17),
-        margin : EdgeInsets.symmetric(horizontal: 35),
+        margin : EdgeInsets.symmetric(horizontal: 4),
         decoration: BoxDecoration(color: Color(hexColor('#FFCD00')),
           borderRadius: BorderRadius.circular(8),
         ),

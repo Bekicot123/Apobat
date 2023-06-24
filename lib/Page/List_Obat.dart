@@ -12,22 +12,6 @@ class _List_ObatState extends State<List_Obat> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: BottomNavigationBar(
-        items: const [
-          BottomNavigationBarItem(
-            label: 'Beranda',
-            icon: Icon(Icons.home),
-          ),
-          BottomNavigationBarItem(
-            label: 'Keranjang',
-            icon: Icon(Icons.shopping_basket),
-          ),
-          BottomNavigationBarItem(
-            label: 'Akun',
-            icon: Icon(Icons.manage_accounts),
-          )
-        ],
-      ),
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
@@ -36,17 +20,20 @@ class _List_ObatState extends State<List_Obat> {
             snap: false,
             centerTitle: true,
             title: const Text('APOBAT'),
-            leading: Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Image.asset(
-                "lib/Image/pills.png",
-              ),
+            leading: IconButton(
+              icon: const Icon(Icons.arrow_back_rounded),
+              onPressed: () {},
             ),
             actions: [
-              IconButton(
-                icon: const Icon(Icons.medical_services),
-                onPressed: () {},
+              Padding(
+                  padding: const EdgeInsets.all(10.0),
+                child: Image.asset("lib/Image/pills.png",
+                ),
               ),
+              //IconButton(
+                //icon: const Icon(Icons.medical_services),
+                //onPressed: () {},
+              //),
             ],
             bottom: AppBar(
               title: Container(
