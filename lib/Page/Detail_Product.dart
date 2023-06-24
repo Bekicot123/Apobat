@@ -59,8 +59,8 @@ class _DetailProductState extends State<DetailProduct> {
                     height: 16,
                   ),
                   Text(
-                    'Deskripsi',
-                    style: TextStyle(fontStyle: FontStyle.normal, fontSize: 14,
+                    'Decolgen Tablet merupakan obat dengan kandungan Paracetamol, Pseudoephedrine HCl, Chlorpheniramine maleate yang bekerja sebagai analgesik-antipiretik, antihistamin dan dekongestan hidung. Obat ini dapat digunakan untuk meredakan gejala flu seperti demam, sakit kepala, bersin-bersin, dan hidung tersumbat.',
+                  style: TextStyle(fontStyle: FontStyle.normal, fontSize: 14,
                     color: Colors.grey),
                     textAlign: TextAlign.justify,
                   ),
