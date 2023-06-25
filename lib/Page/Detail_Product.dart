@@ -2,13 +2,13 @@ import 'package:apobat/Component/Button.dart';
 import 'package:apobat/Component/ButtonCart.dart';
 import 'package:flutter/material.dart';
 
-class DetailProduct extends StatefulWidget {
+class Detail_Product extends StatefulWidget {
 
   @override
-  _DetailProductState createState() => _DetailProductState();
+  _Detail_ProductState createState() => _Detail_ProductState();
 }
 
-class _DetailProductState extends State<DetailProduct> {
+class _Detail_ProductState extends State<Detail_Product> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
