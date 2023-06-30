@@ -2,8 +2,6 @@ import 'package:apobat/Component/CardProduct.dart';
 import 'package:flutter/material.dart';
 
 class List_Obat extends StatefulWidget {
-  const List_Obat({Key? key}) : super(key: key);
-
   @override
   State<List_Obat> createState() => _List_ObatState();
 }
@@ -12,68 +10,68 @@ class _List_ObatState extends State<List_Obat> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CustomScrollView(
-        slivers: [
-          SliverAppBar(
-            floating: true,
-            pinned: true,
-            snap: false,
-            centerTitle: true,
-            title: const Text('APOBAT'),
-            leading: IconButton(
-              icon: const Icon(Icons.arrow_back_rounded),
-              onPressed: () {},
-            ),
-            actions: [
-              Padding(
-                  padding: const EdgeInsets.all(10.0),
-                child: Image.asset("lib/Image/pills.png",
-                ),
-              ),
-              //IconButton(
-                //icon: const Icon(Icons.medical_services),
-                //onPressed: () {},
-              //),
-            ],
-            bottom: AppBar(
-              title: Container(
-                width: double.infinity,
-                height: 40,
-                color: Colors.white,
-                child: const Center(
-                  child: TextField(
-                    decoration: InputDecoration(
-                      hintText: 'Cari Obat',
-                      prefixIcon: Icon(Icons.search),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ),
-          // Other Sliver Widgets
-          SliverList(
-            delegate: SliverChildListDelegate([
-              const SizedBox(
-                height: 85,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      body: SafeArea(
+        child: ListView(
+          padding: EdgeInsets.fromLTRB(24, 30, 24, 30),
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text('\n\n\t\t\t\tObat Flu',style: TextStyle(fontSize: 16,
-                            fontWeight: FontWeight.bold),
-                        ),
-                      ],
+                    Image.asset(
+                      'lib/Image/logo.png',
+                      width: 170,
+                    ),
+                    SizedBox(
+                      height: 16,
+                    ),
+                    Text(
+                      'Find a medicine or\nvitamins with APOBAT!',
+                      style: TextStyle(fontSize: 16, color: Colors.blueGrey),
                     ),
                   ],
                 ),
+                IconButton(
+                    onPressed: (){},
+                    icon: Icon(Icons.arrow_back_rounded, color: Colors.blue,),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 24,
+            ),
+            Container(
+              padding: EdgeInsets.symmetric(horizontal:16, vertical: 5),
+              height: 55,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+                color: Color(hexColor('#DEF7FF')),
               ),
-              CardProduct()
-            ]),
-          ),
-        ],
+              child: TextField(
+                decoration: InputDecoration(border: InputBorder.none,
+                  prefixIcon: Icon(Icons.search, color: Color(hexColor('#81E1FF')),
+                  ),
+                  hintText: 'Search medicine ...',
+                  hintStyle: TextStyle(color: Color(hexColor('#81E1FF'))),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 32,
+            ),
+            Text(
+              'Flu Medicine List',
+              style: TextStyle(fontSize: 15,),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            CardProduct(),
+          ],
+        ),
       ),
     );
   }
