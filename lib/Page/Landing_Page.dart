@@ -5,79 +5,77 @@ import 'package:apobat/Page/Home_Page.dart';
 import 'package:flutter/material.dart';
 
 class Landing_Page extends StatefulWidget {
-  const Landing_Page({super.key});
-
   @override
   State<Landing_Page> createState() => _Landing_PageState();
 }
 
 class _Landing_PageState extends State<Landing_Page> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CustomScrollView(
-        slivers: [
-          SliverAppBar(
-            floating: true,
-            pinned: true,
-            snap: false,
-            centerTitle: true,
-            title: const Text('APOBAT'),
-            leading: Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Image.asset(
-                'lib/Image/pills.png',
-              ),
-            ),
-            actions: [
-              IconButton(
-                icon: const Icon(Icons.medical_services),
-                onPressed: () {},
-              ),
-            ],
-            bottom: AppBar(
-              title: Container(
-                width: double.infinity,
-                height: 40,
-                color: Colors.white,
-                child: const Center(
-                  child: TextField(
-                    decoration: InputDecoration(
-                      hintText: 'Cari Obat',
-                      prefixIcon: Icon(Icons.search),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ),
-          // Other Sliver Widgets
-          SliverList(
-            delegate: SliverChildListDelegate([
-              const SizedBox(
-                height: 85,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      body: SafeArea(
+        child: ListView(
+          padding: EdgeInsets.fromLTRB(24, 30, 24, 30),
+          children: [
+            Row(
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text('\n\n\t\t\t\tLayanan Apotek',style: TextStyle(fontSize: 16,
-                            fontWeight: FontWeight.bold),
-                        ),
-                      ],
+                    Image.asset(
+                      'lib/Image/logo.png',
+                      width: 170,
                     ),
-                    Text('Selengkapnya\t\t\t\t\t',style: TextStyle(color: Colors.blue),
+                    SizedBox(
+                      height: 16,
                     ),
+                    Text(
+                        'Find a medicine or\nvitamins with APOBAT!',
+                      style: TextStyle(fontSize: 16, color: Colors.blueGrey),
+                   ),
                   ],
                 ),
+              ],
+            ),
+            SizedBox(
+              height: 24,
+            ),
+            Container(
+              padding: EdgeInsets.symmetric(horizontal:16, vertical: 5),
+              height: 55,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+                color: Color(hexColor('#DEF7FF')),
               ),
-              CardCategory()
-            ]),
-          ),
-        ],
+              child: TextField(
+                decoration: InputDecoration(border: InputBorder.none,
+                  prefixIcon: Icon(Icons.search, color: Color(hexColor('#81E1FF')),
+                  ),
+                  hintText: 'Search medicine ...',
+                  hintStyle: TextStyle(color: Color(hexColor('#81E1FF'))),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 32,
+            ),
+            Text(
+              'Pharmacy Service by Category',
+              style: TextStyle(fontSize: 15,),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            CardCategory(),
+          ],
+        ),
       ),
     );
   }
+}
+int hexColor(String color) {
+  String newColor = '0xff' + color;
+  newColor = newColor.replaceAll('#', '');
+  int finalColor = int.parse(newColor);
+  return finalColor;
 }
