@@ -13,14 +13,14 @@ class Landing_Page extends StatefulWidget {
 
 class _Landing_PageState extends State<Landing_Page> {
 
-  List catName = ["Demam", "Batuk", "Flu", "Vitamin", "Anak", "Magh"];
+  List catName = ["Demam", "Batuk", "Flu", "Vitamin", "Anak", "Maag"];
   List<Image> catImage = [
-    Image.asset('lib/HomeImage/sick.png'),
-    Image.asset('lib/HomeImage/cough.png'),
-    Image.asset('lib/HomeImage/difficulty-breathing.png'),
-    Image.asset('lib/HomeImage/children.png'),
-    Image.asset('lib/HomeImage/children.png'),
-    Image.asset('lib/HomeImage/diabetes.png')
+    Image.asset('lib/Image/sick.png'),
+    Image.asset('lib/Image/cough.png'),
+    Image.asset('lib/Image/flu.png'),
+    Image.asset('lib/Image/vitamins.png'),
+    Image.asset('lib/Image/children.png'),
+    Image.asset('lib/Image/maag.png')
   ];
   @override
   Widget build(BuildContext context) {
