@@ -1,4 +1,6 @@
+import 'package:apobat/Component/Splash%20screen.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:apobat/Component/Splash screen.dart';
 import 'package:flutter/material.dart';
 import 'package:apobat/Component/auth.dart';
 import 'package:apobat/Page/LoginOrRegister_Page.dart';
