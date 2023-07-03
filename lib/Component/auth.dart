@@ -1,4 +1,5 @@
 import 'package:apobat/Component/NavBar.dart';
+import 'package:apobat/Component/Splash%20screen.dart';
 import 'package:apobat/Page/Landing_Page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +19,7 @@ class AuthPage extends StatelessWidget{
             return Navbar();
           }
           else{
-            return LoginOrRegister();
+            return Splashview();
           }
         },
       ),
