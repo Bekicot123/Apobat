@@ -19,7 +19,7 @@ class AuthPage extends StatelessWidget{
             return Navbar();
           }
           else{
-            return Splashview();
+            return LoginOrRegister();
           }
         },
       ),

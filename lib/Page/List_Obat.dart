@@ -34,9 +34,15 @@ class _List_ObatState extends State<List_Obat> {
                     ),
                   ],
                 ),
-                IconButton(
-                    onPressed: (){},
-                    icon: Icon(Icons.arrow_back_rounded, color: Colors.blue,),
+                InkWell(
+                  onTap: (){
+                    Navigator.pop(context);
+                  },
+                  child: Icon(
+                    Icons.arrow_back_rounded,
+                    size: 25,
+                    color: Colors.blue,
+                  ),
                 ),
               ],
             ),
