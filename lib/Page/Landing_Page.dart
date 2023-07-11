@@ -1,7 +1,10 @@
 import 'package:apobat/Component/CardCategory.dart';
+import 'package:apobat/Page/About.dart';
 import 'package:apobat/Page/Akun_Page.dart';
 import 'package:apobat/Page/Cart_Page.dart';
+import 'package:apobat/Page/Help.dart';
 import 'package:apobat/Page/Home_Page.dart';
+import 'package:apobat/Page/drawer.dart';
 import 'package:flutter/material.dart';
 
 class Landing_Page extends StatefulWidget {
@@ -22,9 +25,39 @@ class _Landing_PageState extends State<Landing_Page> {
     Image.asset('lib/Image/children.png'),
     Image.asset('lib/Image/maag.png')
   ];
+
+  void goToAboutPage(){
+    //pop menu drawer
+    Navigator.pop(context);
+
+    //go to about page
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => const About(),
+        ),
+    );
+  }
+  void goToHelpPage(){
+    //pop menu drawer
+    Navigator.pop(context);
+
+    //go to about page
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const Help(),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: MyDrawer(
+        onAboutTap: goToAboutPage,//goToAboutPage
+        onHelpTap: goToHelpPage,
+      ),
       body: SafeArea(
         child: ListView(
           padding: EdgeInsets.fromLTRB(24, 30, 24, 30),

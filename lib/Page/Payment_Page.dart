@@ -13,9 +13,21 @@ class _Payment_PageState extends State<Payment_Page>{
   Widget build(BuildContext context){
     return Scaffold(
       appBar: AppBar(
+        actions: [
+          InkWell(
+            onTap: (){
+              Navigator.pop(context);
+            },
+            child: Icon(
+              Icons.arrow_back_rounded,
+              size: 25,
+              color: Colors.white,
+            ),
+          ),
+        ],
           title: Center(
             child: Text('Pembayaran'),
-          )
+          ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: Container(
