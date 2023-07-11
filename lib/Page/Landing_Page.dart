@@ -1,5 +1,6 @@
 import 'package:apobat/Component/CardCategory.dart';
 import 'package:apobat/Page/About.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:apobat/Page/Akun_Page.dart';
 import 'package:apobat/Page/Cart_Page.dart';
 import 'package:apobat/Page/Help.dart';
@@ -8,7 +9,7 @@ import 'package:apobat/Page/drawer.dart';
 import 'package:flutter/material.dart';
 
 class Landing_Page extends StatefulWidget {
-
+  final user = FirebaseAuth.instance.currentUser!;
   @override
   State<Landing_Page> createState() => _Landing_PageState();
 
@@ -51,12 +52,18 @@ class _Landing_PageState extends State<Landing_Page> {
     );
   }
 
+  void signUserOut() {
+    FirebaseAuth.instance.signOut();
+  }
+  final user = FirebaseAuth.instance.currentUser!;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: MyDrawer(
         onAboutTap: goToAboutPage,//goToAboutPage
         onHelpTap: goToHelpPage,
+        onSignOut: signUserOut,
       ),
       body: SafeArea(
         child: ListView(
