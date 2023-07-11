@@ -21,8 +21,12 @@ class _AkunPageState extends State<AkunPage>{
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(user.email!),
-        actions: [IconButton(onPressed: signUserOut, icon: Icon(Icons.logout))],
+        title: Center(
+          child: Text(
+            'P r o f i l e'
+          ),
+        ),
+        //title: Text(user.email!),
       ),
     );
   }
