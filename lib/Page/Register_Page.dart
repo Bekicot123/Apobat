@@ -20,30 +20,45 @@ class _RegisterPageState extends State<RegisterPage> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
-  void signUSer() async {
-    await FirebaseAuth.instance.createUserWithEmailAndPassword(
-      email: emailController.text.trim(),
-      password: passwordController.text.trim(),
+  void signUp() async {
+    showDialog(
+        context: context,
+        builder: (context) => const Center(
+          child:  CircularProgressIndicator(),
+        ),
     );
-    addUserDetails(
-        usernameController.text,
-        namaController.text,
-        alamatController.text,
-        emailController.text,
-        passwordController.text
-    );
-  }
 
-  void addUserDetails(
-      String username, String namalengkap,
-      String alamat, String email, String pass) async {
-    await FirebaseFirestore.instance.collection('users').add({
-      'UserName':username,
-      'Nama_Lengkap':namalengkap,
-      'Alamat':alamat,
-      'Email':email,
-      'Password':pass,
-    });
+    try{
+      UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: emailController.text,
+          password: passwordController.text,
+      );
+
+      FirebaseFirestore.instance
+      .collection("Users")
+      .doc(userCredential.user!.email)
+      .set({
+        'username' : usernameController.text,
+        'email' : emailController.text,
+        'fullname' : namaController.text,
+        'password' : passwordController.text,
+        'address' : alamatController.text,
+      });
+
+      if (context.mounted) Navigator.pop(context);
+    } on FirebaseAuthException catch (e){
+      Navigator.pop(context);
+      displayMessage(e.code);
+    }
+  }
+  
+  void displayMessage(String message){
+    showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text(message),
+        ),
+    );
   }
 
   @override
@@ -117,7 +132,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 const SizedBox(height: 20,),
                 MyButton(
                   text: "Daftar",
-                  onTap: signUSer,
+                  onTap: signUp,
                 ),
                 const SizedBox(height: 20,),
                 Row(

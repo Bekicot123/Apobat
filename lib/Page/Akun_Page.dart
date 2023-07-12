@@ -15,10 +15,55 @@ class AkunPage extends StatefulWidget {
 class _AkunPageState extends State<AkunPage>{
   //user
   final currentUser = FirebaseAuth.instance.currentUser!;
+  final usersCollection = FirebaseFirestore.instance.collection("Users");
 
   //edit field
   Future<void> editField(String field) async {
+    String newValue = "";
+    await showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          backgroundColor: Colors.blue[200],
+          title: Text(
+            "Edit $field",
+            style: const TextStyle(color: Colors.white),
+          ),
+          content: TextField(
+            autofocus: true,
+            style: TextStyle(color: Colors.white),
+            decoration: InputDecoration(
+              hintText: "Enter new $field",
+              hintStyle: TextStyle(color: Colors.black),
+            ),
+            onChanged: (value) {
+              newValue = value;
+            },
+          ),
+          actions: [
+            //cancel button
+            TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: Text(
+                  'Cancel',
+                  style: TextStyle(color: Colors.white),
+                ),
+            ),
 
+            //save button
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(newValue),
+              child: Text(
+                'Save',
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
+          ],
+        ),
+    );
+
+    if (newValue.trim().length > 0) {
+      await usersCollection.doc(currentUser.email).update({field: newValue});
+    }
   }
 
   @override
@@ -32,7 +77,13 @@ class _AkunPageState extends State<AkunPage>{
         ),
         //title: Text(user.email!),
       ),
-      body: ListView(
+      body: StreamBuilder<DocumentSnapshot>(
+        stream: FirebaseFirestore.instance.collection("Users").doc(currentUser.email).snapshots(),
+        builder: (context, snapshot){
+          if (snapshot.hasData){
+            final userData = snapshot.data!.data() as Map<String, dynamic>;
+
+            return ListView(
               children: [
                 const SizedBox(height: 50,),
                 // profile pic
@@ -60,28 +111,40 @@ class _AkunPageState extends State<AkunPage>{
                   ),
                 ),
 
-                // user fullname
+                // username
                 MyTextBox(
-                  text: 'username',
+                  text: userData['username'],
                   sectionName: 'username',
                   onPressed: () => editField('username'),
                 ),
 
                 //user fullname
                 MyTextBox(
-                  text: 'fullname',
+                  text: userData['fullname'],
                   sectionName: 'fullname',
                   onPressed: () => editField('fullname'),
                 ),
 
                 // user address
                 MyTextBox(
-                  text: 'address',
+                  text: userData['address'],
                   sectionName: 'address',
                   onPressed: () => editField('address'),
                 ),
+
               ],
-            ),
+            );
+          } else if (snapshot.hasError) {
+            return Center(
+              child: Text('Error' + snapshot.error.toString()),
+            );
+          }
+
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        },
+      ),
 
     );
   }
