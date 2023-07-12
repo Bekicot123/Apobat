@@ -138,7 +138,9 @@ class _Landing_PageState extends State<Landing_Page> {
                       ),
                       itemBuilder: (context, index) {
                         return InkWell(
-                          onTap: (){},
+                          onTap: (){
+
+                          },
                           child: Column(
                             children: [
                               Container(
