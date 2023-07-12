@@ -18,16 +18,6 @@ class Landing_Page extends StatefulWidget {
 
 class _Landing_PageState extends State<Landing_Page> {
 
-  List catName = ["Demam", "Batuk", "Flu", "Vitamin", "Anak", "Maag"];
-  List<Image> catImage = [
-    Image.asset('lib/Image/sick.png'),
-    Image.asset('lib/Image/cough.png'),
-    Image.asset('lib/Image/flu.png'),
-    Image.asset('lib/Image/vitamins.png'),
-    Image.asset('lib/Image/children.png'),
-    Image.asset('lib/Image/maag.png')
-  ];
-
   void goToAboutPage(){
     //pop menu drawer
     Navigator.pop(context);
@@ -121,53 +111,127 @@ class _Landing_PageState extends State<Landing_Page> {
                 fontSize: 15,
               ),
             ),
-            SizedBox(
-              height: 20,
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 20, left: 10, right: 10),
-              child: Column(
-                children: [
-                  GridView.builder(
-                      itemCount: catName.length,
-                      shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        childAspectRatio: 1.1,
-                      ),
-                      itemBuilder: (context, index) {
-                        return InkWell(
-                          onTap: (){
 
-                          },
-                          child: Column(
-                            children: [
-                              Container(
-                                height: 60,
-                                width: 60,
-                                decoration: BoxDecoration(
-                                    shape: BoxShape.circle
-                                ),
-                                child: Center(
-                                  child: catImage[index],
-                                ),
-                              ),
-                              SizedBox(height: 10),
-                              Text(
-                                catName[index],
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              )
-                            ],
-                          ),
-                        );
-                      })
-                ],
-              ),
-            )
+            GridView.count(
+              shrinkWrap: true,
+              crossAxisCount: 2,
+              children: <Widget>[
+                Card(
+                  margin: const EdgeInsets.all(30.0),
+                  child: InkWell(
+                    onTap: (){},
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget> [
+                        Image.asset('lib/Image/vitamins.png', width: 60,),
+                        SizedBox(height: 10,),
+                        Text(
+                          "Vitamin",
+                          style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Card(
+                  margin: const EdgeInsets.all(30.0),
+                  child: InkWell(
+                    onTap: (){},
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget> [
+                        Image.asset('lib/Image/flu.png', width: 60,),
+                        SizedBox(height: 10,),
+                        Text(
+                          "Flu",
+                          style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Card(
+                  margin: const EdgeInsets.all(30.0),
+                  child: InkWell(
+                    onTap: (){},
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget> [
+                        Image.asset('lib/Image/cough.png', width: 60,),
+                        SizedBox(height: 10,),
+                        Text(
+                          "Batuk",
+                          style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Card(
+                  margin: const EdgeInsets.all(30.0),
+                  child: InkWell(
+                    onTap: (){},
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget> [
+                        Image.asset('lib/Image/sick.png', width: 60,),
+                        SizedBox(height: 10,),
+                        Text(
+                          "Demam",
+                          style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Card(
+                  margin: const EdgeInsets.all(30.0),
+                  child: InkWell(
+                    onTap: (){},
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget> [
+                        Image.asset('lib/Image/children.png', width: 60,),
+                        SizedBox(height: 10,),
+                        Text(
+                          "Anak",
+                          style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Card(
+                  margin: const EdgeInsets.all(30.0),
+                  child: InkWell(
+                    onTap: (){},
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget> [
+                        Image.asset('lib/Image/maag.png', width: 60,),
+                        SizedBox(height: 10,),
+                        Text(
+                          "Maag",
+                          style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ],
         ),
       ),
