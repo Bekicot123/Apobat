@@ -1,24 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:apobat/ListFlu/DetailFlu.dart';
+import 'package:apobat/List_Flu/DetailFlu.dart';
+
+import 'DetailVitamin.dart';
 
 
 
-class CardFlu extends StatefulWidget {
+class CardVitamin extends StatefulWidget {
   final String? id;
-  const CardFlu(this.id, {Key? key}) : super(key: key);
+  const CardVitamin(this.id, {Key? key}) : super(key: key);
 
   @override
-  State<CardFlu> createState() => _CardFluState();
+  State<CardVitamin> createState() => _CardVitaminState();
 }
 
-class _CardFluState extends State<CardFlu> {
+class _CardVitaminState extends State<CardVitamin> {
 
   String id = '';
   String? image, name,deskripsi;
   String harga='';
   FirebaseFirestore? firestore;
-  CollectionReference? flu;
+  CollectionReference? vitamin;
 
   final TextEditingController nameController = TextEditingController();
   final TextEditingController hargaController = TextEditingController();
@@ -30,12 +32,12 @@ class _CardFluState extends State<CardFlu> {
     super.initState();
     id = widget.id!;
     firestore = FirebaseFirestore.instance;
-    flu = firestore!.collection('Flu');
+    vitamin = firestore!.collection('Vitamin');
     getData();
   }
 
   void getData() {
-    flu?.doc(id).get().then((value) {
+    vitamin?.doc(id).get().then((value) {
       name = value.get('Nama Obat');
       harga = value.get('Harga').toString();
       deskripsi = value.get('Deskripsi');
@@ -51,9 +53,9 @@ class _CardFluState extends State<CardFlu> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-        onTap: () {Navigator.pushNamed(context, DetailFlu.routeName, arguments: id);},
+        onTap: () {Navigator.pushNamed(context, DetailVitamin.routeName, arguments: id);},
         child: Card(
-          margin: const EdgeInsets.only(bottom: 20,left:8,right:8),
+          margin: const EdgeInsets.only(top:8,bottom: 20,left:8,right:8),
           clipBehavior: Clip.antiAlias,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(14),

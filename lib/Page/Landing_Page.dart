@@ -1,4 +1,5 @@
 import 'package:apobat/Component/CardCategory.dart';
+import 'package:apobat/List_Flu/ListFlu.dart';
 import 'package:apobat/Page/About.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:apobat/Page/Akun_Page.dart';
@@ -11,26 +12,26 @@ import 'package:flutter/material.dart';
 class Landing_Page extends StatefulWidget {
   static const routeName = '/Landing_Page';
   final user = FirebaseAuth.instance.currentUser!;
+
   @override
   State<Landing_Page> createState() => _Landing_PageState();
-
 }
 
 class _Landing_PageState extends State<Landing_Page> {
-
-  void goToAboutPage(){
+  void goToAboutPage() {
     //pop menu drawer
     Navigator.pop(context);
 
     //go to about page
     Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) => const About(),
-        ),
+      context,
+      MaterialPageRoute(
+        builder: (context) => const About(),
+      ),
     );
   }
-  void goToHelpPage(){
+
+  void goToHelpPage() {
     //pop menu drawer
     Navigator.pop(context);
 
@@ -46,13 +47,14 @@ class _Landing_PageState extends State<Landing_Page> {
   void signUserOut() {
     FirebaseAuth.instance.signOut();
   }
+
   final user = FirebaseAuth.instance.currentUser!;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: MyDrawer(
-        onAboutTap: goToAboutPage,//goToAboutPage
+        onAboutTap: goToAboutPage, //goToAboutPage
         onHelpTap: goToHelpPage,
         onSignOut: signUserOut,
       ),
@@ -111,7 +113,6 @@ class _Landing_PageState extends State<Landing_Page> {
                 fontSize: 15,
               ),
             ),
-
             GridView.count(
               shrinkWrap: true,
               crossAxisCount: 2,
@@ -119,17 +120,22 @@ class _Landing_PageState extends State<Landing_Page> {
                 Card(
                   margin: const EdgeInsets.all(30.0),
                   child: InkWell(
-                    onTap: (){},
+                    onTap: () {
+                    },
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
-                      children: <Widget> [
-                        Image.asset('lib/Image/vitamins.png', width: 60,),
-                        SizedBox(height: 10,),
+                      children: <Widget>[
+                        Image.asset(
+                          'lib/Image/vitamins.png',
+                          width: 60,
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
                         Text(
                           "Vitamin",
                           style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold),
+                              fontSize: 15, fontWeight: FontWeight.bold),
                         ),
                       ],
                     ),
@@ -138,17 +144,26 @@ class _Landing_PageState extends State<Landing_Page> {
                 Card(
                   margin: const EdgeInsets.all(30.0),
                   child: InkWell(
-                    onTap: (){},
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const FluList()));
+                    },
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
-                      children: <Widget> [
-                        Image.asset('lib/Image/flu.png', width: 60,),
-                        SizedBox(height: 10,),
+                      children: <Widget>[
+                        Image.asset(
+                          'lib/Image/flu.png',
+                          width: 60,
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
                         Text(
                           "Flu",
                           style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold),
+                              fontSize: 15, fontWeight: FontWeight.bold),
                         ),
                       ],
                     ),
@@ -157,17 +172,21 @@ class _Landing_PageState extends State<Landing_Page> {
                 Card(
                   margin: const EdgeInsets.all(30.0),
                   child: InkWell(
-                    onTap: (){},
+                    onTap: () {},
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
-                      children: <Widget> [
-                        Image.asset('lib/Image/cough.png', width: 60,),
-                        SizedBox(height: 10,),
+                      children: <Widget>[
+                        Image.asset(
+                          'lib/Image/cough.png',
+                          width: 60,
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
                         Text(
                           "Batuk",
                           style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold),
+                              fontSize: 15, fontWeight: FontWeight.bold),
                         ),
                       ],
                     ),
@@ -176,17 +195,21 @@ class _Landing_PageState extends State<Landing_Page> {
                 Card(
                   margin: const EdgeInsets.all(30.0),
                   child: InkWell(
-                    onTap: (){},
+                    onTap: () {},
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
-                      children: <Widget> [
-                        Image.asset('lib/Image/sick.png', width: 60,),
-                        SizedBox(height: 10,),
+                      children: <Widget>[
+                        Image.asset(
+                          'lib/Image/sick.png',
+                          width: 60,
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
                         Text(
                           "Demam",
                           style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold),
+                              fontSize: 15, fontWeight: FontWeight.bold),
                         ),
                       ],
                     ),
@@ -195,17 +218,21 @@ class _Landing_PageState extends State<Landing_Page> {
                 Card(
                   margin: const EdgeInsets.all(30.0),
                   child: InkWell(
-                    onTap: (){},
+                    onTap: () {},
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
-                      children: <Widget> [
-                        Image.asset('lib/Image/children.png', width: 60,),
-                        SizedBox(height: 10,),
+                      children: <Widget>[
+                        Image.asset(
+                          'lib/Image/children.png',
+                          width: 60,
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
                         Text(
                           "Anak",
                           style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold),
+                              fontSize: 15, fontWeight: FontWeight.bold),
                         ),
                       ],
                     ),
@@ -214,17 +241,21 @@ class _Landing_PageState extends State<Landing_Page> {
                 Card(
                   margin: const EdgeInsets.all(30.0),
                   child: InkWell(
-                    onTap: (){},
+                    onTap: () {},
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
-                      children: <Widget> [
-                        Image.asset('lib/Image/maag.png', width: 60,),
-                        SizedBox(height: 10,),
+                      children: <Widget>[
+                        Image.asset(
+                          'lib/Image/maag.png',
+                          width: 60,
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
                         Text(
                           "Maag",
                           style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold),
+                              fontSize: 15, fontWeight: FontWeight.bold),
                         ),
                       ],
                     ),
