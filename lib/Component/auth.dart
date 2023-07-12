@@ -8,6 +8,7 @@ import 'package:apobat/Page/LoginOrRegister_Page.dart';
 import 'package:apobat/Page/Login_Page.dart';
 
 class AuthPage extends StatelessWidget{
+  static const routeName = '/auth';
   const AuthPage({super.key});
   @override
   Widget build(BuildContext context){

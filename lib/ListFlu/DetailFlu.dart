@@ -108,7 +108,7 @@ class _DetailFluState extends State<DetailFlu> {
                                 const SizedBox(width: 0),
                                 Text(
                                     'Rp. $harga',
-                                      style : TextStyle(fontWeight: FontWeight.w400, color: Colors.green)
+                                    style : TextStyle(fontWeight: FontWeight.w400, color: Colors.green)
                                 ),
                               ],
                             ),

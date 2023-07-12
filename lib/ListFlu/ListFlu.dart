@@ -2,8 +2,8 @@ import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:hosting/CRUD/CardFlu.dart';
-import 'package:hosting/CRUD/addEditFlu.dart';
+import 'package:apobat/ListFlu/CardFlu.dart';
+
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -12,7 +12,7 @@ void main() async{
   runApp(const FluList());
 }
 class FluList extends StatefulWidget {
-  static const routeName = '/Flu';
+  static const routeName = '/ListFlu';
   const FluList({super.key});
 
   @override
@@ -21,22 +21,11 @@ class FluList extends StatefulWidget {
 
 class _FluListState extends State<FluList> {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
-  final CollectionReference _Flu = 
-      FirebaseFirestore.instance.collection("Flu");
+  final CollectionReference _Flu =
+  FirebaseFirestore.instance.collection("Flu");
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        // isExtended: true,
-        child: const Icon(Icons.add),
-        backgroundColor: Colors.blue,
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const AddEditFlu()),
-          );
-        },
-      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -53,11 +42,11 @@ class _FluListState extends State<FluList> {
                       }
                       if (snapshots.hasData){
                         return ListView.builder(
-                          itemCount: snapshots.data?.docs.length,
+                            itemCount: snapshots.data?.docs.length,
                             itemBuilder: (context, index){
                               log('Index : $index');
                               QueryDocumentSnapshot<Object?>? ds =
-                                  snapshots.data?.docs[index];
+                              snapshots.data?.docs[index];
                               log('Index : $ds');
                               return CardFlu(ds?.id);
                             });
