@@ -2,7 +2,7 @@ import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:apobat/ListFlu/CardFlu.dart';
+import 'package:apobat/List_Flu/CardFlu.dart';
 
 
 void main() async{
@@ -12,7 +12,7 @@ void main() async{
   runApp(const FluList());
 }
 class FluList extends StatefulWidget {
-  static const routeName = '/ListFlu';
+  static const routeName = '/FluList';
   const FluList({super.key});
 
   @override
@@ -26,12 +26,15 @@ class _FluListState extends State<FluList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('List Obat FLU'),
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
             children: [
               Container(
-                height: 500,
+                height: 700,
                 child: StreamBuilder(
                     stream: _Flu.snapshots(),
                     builder: (context, AsyncSnapshot snapshots){

@@ -86,7 +86,7 @@ class _DetailFluState extends State<DetailFlu> {
                   ],
                 ),
                 Container(
-                  margin: const EdgeInsets.only(left: 20, right: 20, top: 15, bottom: 15),
+                  margin: const EdgeInsets.only(left: 20, right: 20, top: 25, bottom: 15),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
