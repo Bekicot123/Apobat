@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:hosting/CRUD/DetailFlu.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:apobat/ListFlu/DetailFlu.dart';
+
 
 
 class CardFlu extends StatefulWidget {

@@ -1,4 +1,5 @@
 import 'package:apobat/Component/Splash%20screen.dart';
+import 'package:apobat/Page/Landing_Page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:apobat/Component/Splash screen.dart';
 import 'package:flutter/material.dart';
@@ -21,9 +22,13 @@ class MyApp extends StatelessWidget{
 
   @override
   Widget build (BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: AuthPage(),
+      initialRoute: AuthPage.routeName,
+      routes: {
+        AuthPage.routeName: (context) => const AuthPage(),
+        Landing_Page.routeName: (context) => Landing_Page(),
+      },
     );
   }
 }

@@ -9,6 +9,7 @@ import 'package:apobat/Page/drawer.dart';
 import 'package:flutter/material.dart';
 
 class Landing_Page extends StatefulWidget {
+  static const routeName = '/Landing_Page';
   final user = FirebaseAuth.instance.currentUser!;
   @override
   State<Landing_Page> createState() => _Landing_PageState();
