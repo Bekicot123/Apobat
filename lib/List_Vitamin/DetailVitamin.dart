@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
+import '../Component/ButtonCart.dart';
+
 class DetailVitamin extends StatefulWidget {
   static const routeName = '/DetailVitamin';
 
@@ -140,8 +142,13 @@ class _DetailVitaminState extends State<DetailVitamin> {
                     ],
                   ),
                 ),
-
-
+                SizedBox(
+                  height: 180,
+                ),
+                MyButtonCart(
+                    onTap: (){},
+                    text: 'Tambah Keranjang'
+                ),
               ]
           ),
         )

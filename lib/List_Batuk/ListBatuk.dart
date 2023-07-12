@@ -1,34 +1,35 @@
 import 'dart:developer';
-import 'package:apobat/List_Vitamin/CardVitamin.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:apobat/List_Flu/CardFlu.dart';
+
+import 'CardBatuk.dart';
 
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 
-  runApp(const VitaminList());
+  runApp(const BatukList());
 }
-class VitaminList extends StatefulWidget {
-  static const routeName = '/VitaminList';
-  const VitaminList({super.key});
+class BatukList extends StatefulWidget {
+  static const routeName = '/BatukList';
+  const BatukList({super.key});
 
   @override
-  State<VitaminList> createState() => _VitaminListState();
+  State<BatukList> createState() => _BatukListState();
 }
 
-class _VitaminListState extends State<VitaminList> {
+class _BatukListState extends State<BatukList> {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
-  final CollectionReference _Flu =
-  FirebaseFirestore.instance.collection("Vitamin");
+  final CollectionReference _batuk =
+  FirebaseFirestore.instance.collection("Batuk");
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('List Vitamin'),
+        title: Text('List Batuk'),
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -37,7 +38,7 @@ class _VitaminListState extends State<VitaminList> {
               Container(
                 height: 700,
                 child: StreamBuilder(
-                    stream: _Flu.snapshots(),
+                    stream: _batuk.snapshots(),
                     builder: (context, AsyncSnapshot snapshots){
                       if (snapshots.connectionState == ConnectionState.waiting){
                         return Center(
@@ -52,7 +53,7 @@ class _VitaminListState extends State<VitaminList> {
                               QueryDocumentSnapshot<Object?>? ds =
                               snapshots.data?.docs[index];
                               log('Index : $ds');
-                              return CardVitamin(ds?.id);
+                              return CardBatuk(ds?.id);
                             });
                       }else{}
                       return Center(

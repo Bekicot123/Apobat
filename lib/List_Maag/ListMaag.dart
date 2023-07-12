@@ -1,34 +1,33 @@
 import 'dart:developer';
-import 'package:apobat/List_Vitamin/CardVitamin.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:apobat/List_Flu/CardFlu.dart';
+import 'package:apobat/List_Maag/CardMaag.dart';
 
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 
-  runApp(const VitaminList());
+  runApp(const MaagList());
 }
-class VitaminList extends StatefulWidget {
-  static const routeName = '/VitaminList';
-  const VitaminList({super.key});
+class MaagList extends StatefulWidget {
+  static const routeName = '/MaagList';
+  const MaagList({super.key});
 
   @override
-  State<VitaminList> createState() => _VitaminListState();
+  State<MaagList> createState() => _MaagListState();
 }
 
-class _VitaminListState extends State<VitaminList> {
+class _MaagListState extends State<MaagList> {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
-  final CollectionReference _Flu =
-  FirebaseFirestore.instance.collection("Vitamin");
+  final CollectionReference _Maag =
+  FirebaseFirestore.instance.collection("Maag");
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('List Vitamin'),
+        title: Text('List Maag'),
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -37,7 +36,7 @@ class _VitaminListState extends State<VitaminList> {
               Container(
                 height: 700,
                 child: StreamBuilder(
-                    stream: _Flu.snapshots(),
+                    stream: _Maag.snapshots(),
                     builder: (context, AsyncSnapshot snapshots){
                       if (snapshots.connectionState == ConnectionState.waiting){
                         return Center(
@@ -52,7 +51,7 @@ class _VitaminListState extends State<VitaminList> {
                               QueryDocumentSnapshot<Object?>? ds =
                               snapshots.data?.docs[index];
                               log('Index : $ds');
-                              return CardVitamin(ds?.id);
+                              return CardMaag(ds?.id);
                             });
                       }else{}
                       return Center(
