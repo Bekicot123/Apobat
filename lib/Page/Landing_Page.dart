@@ -1,5 +1,6 @@
 import 'package:apobat/Component/CardCategory.dart';
 import 'package:apobat/List_Flu/ListFlu.dart';
+import 'package:apobat/List_Vitamin/ListVitamin.dart';
 import 'package:apobat/Page/About.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:apobat/Page/Akun_Page.dart';
@@ -121,6 +122,10 @@ class _Landing_PageState extends State<Landing_Page> {
                   margin: const EdgeInsets.all(30.0),
                   child: InkWell(
                     onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const VitaminList()));
                     },
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
