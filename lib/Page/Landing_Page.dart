@@ -136,27 +136,30 @@ class _Landing_PageState extends State<Landing_Page> {
                         childAspectRatio: 1.1,
                       ),
                       itemBuilder: (context, index) {
-                        return Column(
-                          children: [
-                            Container(
-                              height: 60,
-                              width: 60,
-                              decoration: BoxDecoration(
-                                  shape: BoxShape.circle
+                        return InkWell(
+                          onTap: (){},
+                          child: Column(
+                            children: [
+                              Container(
+                                height: 60,
+                                width: 60,
+                                decoration: BoxDecoration(
+                                    shape: BoxShape.circle
+                                ),
+                                child: Center(
+                                  child: catImage[index],
+                                ),
                               ),
-                              child: Center(
-                                child: catImage[index],
-                              ),
-                            ),
-                            SizedBox(height: 10),
-                            Text(
-                              catName[index],
-                              style: TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            )
-                          ],
+                              SizedBox(height: 10),
+                              Text(
+                                catName[index],
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              )
+                            ],
+                          ),
                         );
                       })
                 ],
