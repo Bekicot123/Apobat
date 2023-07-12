@@ -8,7 +8,11 @@ import 'package:apobat/Component/auth.dart';
 import 'package:apobat/Page/LoginOrRegister_Page.dart';
 import 'package:apobat/Page/Register_Page.dart';
 import 'package:apobat/firebase_options.dart';
+import 'List_Anak/DetailAnak.dart';
+import 'List_Batuk/DetailBatuk.dart';
+import 'List_Demam/DetailDemam.dart';
 import 'List_Flu/DetailFlu.dart';
+import 'List_Maag/DetailMaag.dart';
 import 'Page/Login_Page.dart';
 
 void main() async{
@@ -32,6 +36,10 @@ class MyApp extends StatelessWidget{
         Landing_Page.routeName: (context) => Landing_Page(),
         DetailFlu.routeName : (context) => DetailFlu(id: ModalRoute.of(context)?.settings.arguments.toString()?? ''),
         DetailVitamin.routeName : (context) => DetailVitamin(id: ModalRoute.of(context)?.settings.arguments.toString()?? ''),
+        DetailBatuk.routeName : (context) => DetailBatuk(id: ModalRoute.of(context)?.settings.arguments.toString()?? ''),
+        DetailDemam.routeName : (context) => DetailDemam(id: ModalRoute.of(context)?.settings.arguments.toString()?? ''),
+        DetailAnak.routeName : (context) => DetailAnak(id: ModalRoute.of(context)?.settings.arguments.toString()?? ''),
+        DetailMaag.routeName : (context) => DetailMaag(id: ModalRoute.of(context)?.settings.arguments.toString()?? ''),
       },
     );
   }

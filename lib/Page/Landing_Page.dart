@@ -1,4 +1,5 @@
 import 'package:apobat/Component/CardCategory.dart';
+import 'package:apobat/List_Batuk/ListBatuk.dart';
 import 'package:apobat/List_Flu/ListFlu.dart';
 import 'package:apobat/List_Vitamin/ListVitamin.dart';
 import 'package:apobat/Page/About.dart';
@@ -9,6 +10,10 @@ import 'package:apobat/Page/Help.dart';
 import 'package:apobat/Page/Home_Page.dart';
 import 'package:apobat/Page/drawer.dart';
 import 'package:flutter/material.dart';
+
+import '../List_Anak/ListAnak.dart';
+import '../List_Demam/ListDemam.dart';
+import '../List_Maag/ListMaag.dart';
 
 class Landing_Page extends StatefulWidget {
   static const routeName = '/Landing_Page';
@@ -177,7 +182,12 @@ class _Landing_PageState extends State<Landing_Page> {
                 Card(
                   margin: const EdgeInsets.all(30.0),
                   child: InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const BatukList()));
+                    },
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
@@ -200,7 +210,12 @@ class _Landing_PageState extends State<Landing_Page> {
                 Card(
                   margin: const EdgeInsets.all(30.0),
                   child: InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const DemamList()));
+                    },
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
@@ -223,7 +238,12 @@ class _Landing_PageState extends State<Landing_Page> {
                 Card(
                   margin: const EdgeInsets.all(30.0),
                   child: InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const AnakList()));
+                    },
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
@@ -246,7 +266,12 @@ class _Landing_PageState extends State<Landing_Page> {
                 Card(
                   margin: const EdgeInsets.all(30.0),
                   child: InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const MaagList()));
+                    },
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[

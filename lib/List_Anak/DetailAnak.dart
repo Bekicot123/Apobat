@@ -3,34 +3,34 @@ import 'package:flutter/material.dart';
 
 import '../Component/ButtonCart.dart';
 
-class DetailFlu extends StatefulWidget {
-  static const routeName = '/DetailFlu';
+class DetailAnak extends StatefulWidget {
+  static const routeName = '/DetailAnak';
 
   final String id;
-  const DetailFlu({Key? key, required this.id}) : super(key: key);
+  const DetailAnak({Key? key, required this.id}) : super(key: key);
 
   @override
-  State<DetailFlu> createState() => _DetailFluState();
+  State<DetailAnak> createState() => _DetailAnakState();
 }
 
-class _DetailFluState extends State<DetailFlu> {
+class _DetailAnakState extends State<DetailAnak> {
 
   String id = '';
   String? image, name,deskripsi;
   String harga='';
   FirebaseFirestore? firestore;
-  CollectionReference? flu;
+  CollectionReference? anak;
 
   @override
   void initState() {
     super.initState();
     id = widget.id!;
     firestore = FirebaseFirestore.instance;
-    flu = firestore!.collection('Flu');
+    anak = firestore!.collection('Anak');
     getData();
   }
   void getData() {
-    flu?.doc(id).get().then((value) {
+    anak?.doc(id).get().then((value) {
       name = value.get('Nama Obat');
       harga = value.get('Harga').toString();
       deskripsi = value.get('Deskripsi');

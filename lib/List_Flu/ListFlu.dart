@@ -27,7 +27,7 @@ class _FluListState extends State<FluList> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('List Obat FLU'),
+        title: Text('List FLU'),
       ),
       body: SafeArea(
         child: SingleChildScrollView(
