@@ -143,7 +143,7 @@ class _DetailAnakState extends State<DetailAnak> {
                   ),
                 ),
                 SizedBox(
-                  height: 140,
+                  height: 10,
                 ),
                 MyButtonCart(
                     onTap: (){},

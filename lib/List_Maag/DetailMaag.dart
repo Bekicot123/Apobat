@@ -143,7 +143,7 @@ class _DetailMaagState extends State<DetailMaag> {
                   ),
                 ),
                 SizedBox(
-                  height: 140,
+                  height: 10,
                 ),
                 MyButtonCart(
                     onTap: (){},

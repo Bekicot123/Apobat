@@ -143,7 +143,7 @@ class _DetailVitaminState extends State<DetailVitamin> {
                   ),
                 ),
                 SizedBox(
-                  height: 140,
+                  height: 10,
                 ),
                 MyButtonCart(
                     onTap: (){},
