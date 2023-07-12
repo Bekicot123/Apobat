@@ -2,6 +2,8 @@ import 'package:apobat/Component/ButtonCart.dart';
 import 'package:flutter/material.dart';
 import 'package:apobat/Page/Akun_Page.dart';
 import 'package:apobat/Page/Landing_Page.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class CartPage extends StatefulWidget{
   CartPage ({super.key});
@@ -10,6 +12,9 @@ class CartPage extends StatefulWidget{
   State<CartPage> createState() => _CartPageState();
 }
 class _CartPageState extends State<CartPage>{
+
+  final currentUser = FirebaseAuth.instance.currentUser!;
+  final usersCollection = FirebaseFirestore.instance.collection("Users");
 
   @override
   Widget build(BuildContext context){
@@ -39,7 +44,7 @@ class _CartPageState extends State<CartPage>{
                   style: TextStyle(fontSize: 16,fontStyle: FontStyle.normal,color: Colors.blueGrey),
                 ),
                 Text(
-                  '1',
+                  '-',
                   style: TextStyle(fontSize: 16,fontStyle: FontStyle.normal, fontWeight: FontWeight.bold),
                 ),
               ],
@@ -55,7 +60,7 @@ class _CartPageState extends State<CartPage>{
                   style: TextStyle(fontSize: 16,fontStyle: FontStyle.normal,color: Colors.blueGrey),
                 ),
                 Text(
-                  'IDR 7000',
+                  'IDR -,',
                   style: TextStyle(fontSize: 16,fontStyle: FontStyle.normal,fontWeight: FontWeight.bold),
                 ),
               ],
@@ -67,71 +72,92 @@ class _CartPageState extends State<CartPage>{
           ],
         ),
       ),
-      body: SafeArea(
-        child: ListView(
-          children: [
-            Container(
-              padding: EdgeInsets.all(24),
-              color: Colors.white,
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                   children: [
-                     Image.asset(
-                       'lib/Image/obatflu.png',
-                       width: 115,
-                       height: 100,
-                     ),
-                     Column(
-                       crossAxisAlignment: CrossAxisAlignment.start,
-                       children: [
-                       Text('DECOLGEN TABLET',
-                         style: TextStyle(
-                           fontSize: 16,
-                         ),
-                       ),
-                       Row(
-                         children: [
-                           IconButton(
-                               onPressed: (){},
-                               icon: Icon(
-                                 Icons.add_circle,
-                                 color: Colors.green,
-                               ),
-                           ),
-                           Text(
-                               '1'
-                           ),
-                           IconButton(
-                             onPressed: (){},
-                             icon: Icon(
-                               Icons.remove_circle,
-                               color: Colors.blue,
-                             ),
-                           ),
-                           IconButton(
-                             onPressed: (){},
-                             icon: Icon(
-                               Icons.takeout_dining,
-                               color: Colors.red,
-                             ),
-                           ),
-                         ],
-                       ),
-                       Text(
-                         'IDR 7000',
-                         style: TextStyle( fontWeight: FontWeight.bold),
-                       ),
-                      ],
-                     ),
-                   ],
-                  )
-                ],
-              ),
-            ),
-          ],
-        ),
+      body: StreamBuilder<DocumentSnapshot>(
+        stream: FirebaseFirestore.instance.collection("Users").doc(currentUser.email).snapshots(),
+        builder: (context, snapshot){
+          if (snapshot.hasData){
+            final userData = snapshot.data!.data() as Map<String, dynamic>;
+
+            return ListView(
+              children: [
+                Container(
+                  padding: EdgeInsets.all(24),
+                  height: 166,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Delivery Destination",
+                        style: TextStyle(fontSize: 16),
+                      ),
+                      SizedBox(height: 16,),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Name",
+                            style: TextStyle(fontSize: 14,color: Colors.grey[700]),
+                          ),
+                          Text(
+                            userData['fullname'],
+                            style: TextStyle(fontSize: 14),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 8,),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Address",
+                            style: TextStyle(fontSize: 14,color: Colors.grey[700]),
+                          ),
+                          Text(
+                            userData['address'],
+                            style: TextStyle(fontSize: 14),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.all(24),
+                  color: Colors.white,
+                  child: Column(
+                    children: [
+                      Text(
+                        'Oops!! No Product in Cart!',
+                        style: TextStyle(fontSize: 17,fontStyle: FontStyle.italic, fontWeight: FontWeight.bold, color: Colors.red),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 100,),
+                Container(
+                  padding: EdgeInsets.all(24),
+                  color: Colors.white,
+                  child: Column(
+                    children: [
+                      Text(
+                        'Pilih Metode Pembayaran',
+                        style: TextStyle(fontSize: 15,fontStyle: FontStyle.italic, fontWeight: FontWeight.bold,),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            );
+          } else if (snapshot.hasError) {
+            return Center(
+              child: Text('Error' + snapshot.error.toString()),
+            );
+          }
+
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        },
       ),
     );
   }
