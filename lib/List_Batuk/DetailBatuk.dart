@@ -143,7 +143,7 @@ class _DetailBatukState extends State<DetailBatuk> {
                   ),
                 ),
                 SizedBox(
-                  height: 180,
+                  height: 140,
                 ),
                 MyButtonCart(
                     onTap: (){},

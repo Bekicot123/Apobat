@@ -143,7 +143,7 @@ class _DetailFluState extends State<DetailFlu> {
                   ),
                 ),
                 SizedBox(
-                  height: 180,
+                  height: 140,
                 ),
                 MyButtonCart(
                     onTap: (){},

@@ -143,7 +143,7 @@ class _DetailDemamState extends State<DetailDemam> {
                   ),
                 ),
                 SizedBox(
-                  height: 180,
+                  height: 140,
                 ),
                 MyButtonCart(
                     onTap: (){},
