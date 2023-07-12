@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:apobat/Page/Login_Page.dart';
-import 'package:apobat/Page/Register.dart';
 import 'package:apobat/Page/Register_Page.dart';
 
 class LoginOrRegister extends StatefulWidget{
