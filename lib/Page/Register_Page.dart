@@ -7,7 +7,7 @@ import 'package:apobat/Component/TextField.dart';
 class RegisterPage extends StatefulWidget {
   final Function()? onTap;
 
-  RegisterPage({super.key, required this.onTap});
+  const RegisterPage({super.key, required this.onTap});
 
   @override
   State<RegisterPage> createState() => _RegisterPageState();
@@ -22,42 +22,43 @@ class _RegisterPageState extends State<RegisterPage> {
 
   void signUp() async {
     showDialog(
-        context: context,
-        builder: (context) => const Center(
-          child:  CircularProgressIndicator(),
-        ),
+      context: context,
+      builder: (context) => const Center(
+        child: CircularProgressIndicator(),
+      ),
     );
 
-    try{
-      UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
-          email: emailController.text,
-          password: passwordController.text,
+    try {
+      UserCredential userCredential =
+          await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: emailController.text,
+        password: passwordController.text,
       );
 
       FirebaseFirestore.instance
-      .collection("Users")
-      .doc(userCredential.user!.email)
-      .set({
-        'username' : usernameController.text,
-        'email' : emailController.text,
-        'fullname' : namaController.text,
-        'password' : passwordController.text,
-        'address' : alamatController.text,
+          .collection("Users")
+          .doc(userCredential.user!.email)
+          .set({
+        'username': usernameController.text,
+        'email': emailController.text,
+        'fullname': namaController.text,
+        'password': passwordController.text,
+        'address': alamatController.text,
       });
 
       if (context.mounted) Navigator.pop(context);
-    } on FirebaseAuthException catch (e){
+    } on FirebaseAuthException catch (e) {
       Navigator.pop(context);
       displayMessage(e.code);
     }
   }
-  
-  void displayMessage(String message){
+
+  void displayMessage(String message) {
     showDialog(
-        context: context,
-        builder: (context) => AlertDialog(
-          title: Text(message),
-        ),
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(message),
+      ),
     );
   }
 
@@ -71,14 +72,14 @@ class _RegisterPageState extends State<RegisterPage> {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
-                Container(
+                SizedBox(
                   height: 100,
                   child: Image.asset('lib/Image/pills.png'),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 Text(
@@ -129,12 +130,16 @@ class _RegisterPageState extends State<RegisterPage> {
                   hintText: 'Password',
                   obscureText: true,
                 ),
-                const SizedBox(height: 20,),
+                const SizedBox(
+                  height: 20,
+                ),
                 MyButton(
                   text: "Daftar",
                   onTap: signUp,
                 ),
-                const SizedBox(height: 20,),
+                const SizedBox(
+                  height: 20,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -163,9 +168,8 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 }
 
-
 int hexColor(String color) {
-  String newColor = '0xff' + color;
+  String newColor = '0xff$color';
   newColor = newColor.replaceAll('#', '');
   int finalColor = int.parse(newColor);
   return finalColor;

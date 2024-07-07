@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class KategoryList extends StatefulWidget {
   String img;
-  KategoryList(this.img);
+  KategoryList(this.img, {super.key});
 
   @override
   State<KategoryList> createState() => _KategoryListState();
@@ -11,6 +11,6 @@ class KategoryList extends StatefulWidget {
 class _KategoryListState extends State<KategoryList> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return const Scaffold();
   }
 }

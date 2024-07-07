@@ -4,28 +4,24 @@ import 'package:apobat/List_Flu/DetailFlu.dart';
 
 import 'DetailVitamin.dart';
 
-
-
 class CardVitamin extends StatefulWidget {
   final String? id;
-  const CardVitamin(this.id, {Key? key}) : super(key: key);
+  const CardVitamin(this.id, {super.key});
 
   @override
   State<CardVitamin> createState() => _CardVitaminState();
 }
 
 class _CardVitaminState extends State<CardVitamin> {
-
   String id = '';
-  String? image, name,deskripsi;
-  String harga='';
+  String? image, name, deskripsi;
+  String harga = '';
   FirebaseFirestore? firestore;
   CollectionReference? vitamin;
 
   final TextEditingController nameController = TextEditingController();
   final TextEditingController hargaController = TextEditingController();
   final TextEditingController deskripsiController = TextEditingController();
-
 
   @override
   void initState() {
@@ -44,8 +40,7 @@ class _CardVitaminState extends State<CardVitamin> {
       image = value.get('Gambar');
 
       if (mounted) {
-        setState(() {
-        });
+        setState(() {});
       }
     });
   }
@@ -53,9 +48,11 @@ class _CardVitaminState extends State<CardVitamin> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-        onTap: () {Navigator.pushNamed(context, DetailVitamin.routeName, arguments: id);},
+        onTap: () {
+          Navigator.pushNamed(context, DetailVitamin.routeName, arguments: id);
+        },
         child: Card(
-          margin: const EdgeInsets.only(top:8,bottom: 20,left:8,right:8),
+          margin: const EdgeInsets.only(top: 8, bottom: 20, left: 8, right: 8),
           clipBehavior: Clip.antiAlias,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(14),
@@ -69,14 +66,16 @@ class _CardVitaminState extends State<CardVitamin> {
                   child: ClipRRect(
                     borderRadius: const BorderRadius.vertical(
                         top: Radius.circular(14), bottom: Radius.circular(14)),
-                    child: image == null ? Image.network('https://th.bing.com/th/id/OIP.r4eciF-FM2-3WdhvxTmGEgHaHa?pid=ImgDet&rs=1')
+                    child: image == null
+                        ? Image.network(
+                            'https://th.bing.com/th/id/OIP.r4eciF-FM2-3WdhvxTmGEgHaHa?pid=ImgDet&rs=1')
                         : Image.network(
-                      image??'',
-                      fit: BoxFit.cover,
-                    ),
+                            image ?? '',
+                            fit: BoxFit.cover,
+                          ),
                   ),
                 )),
-            SizedBox(
+            const SizedBox(
               width: 10,
             ),
             Column(
@@ -86,30 +85,27 @@ class _CardVitaminState extends State<CardVitamin> {
                 SizedBox(
                   width: 150,
                   child: Text(
-                    name??'',
+                    name ?? '',
                     maxLines: 1,
                     overflow: TextOverflow.fade,
                     softWrap: false,
-                    style: TextStyle(fontSize: 17, color: Colors.black),
+                    style: const TextStyle(fontSize: 17, color: Colors.black),
                   ),
                 ),
                 const SizedBox(height: 7),
                 SizedBox(
                   width: 150,
                   child: Text(
-                    "Rp."+harga??'',
+                    "Rp.$harga" ?? '',
                     maxLines: 1,
                     overflow: TextOverflow.fade,
                     softWrap: false,
-                    style: TextStyle(fontSize: 17, color: Colors.black),
+                    style: const TextStyle(fontSize: 17, color: Colors.black),
                   ),
                 ),
               ],
             ),
-
           ]),
-        )
-
-    );
+        ));
   }
 }
