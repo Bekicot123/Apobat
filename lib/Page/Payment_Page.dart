@@ -1,14 +1,14 @@
 import 'package:apobat/Component/ButtonCart.dart';
 import 'package:flutter/material.dart';
 
-class Payment_Page extends StatefulWidget {
-  const Payment_Page({super.key});
+class PaymentPage extends StatefulWidget {
+  const PaymentPage({super.key});
 
   @override
-  State<Payment_Page> createState() => _Payment_PageState();
+  State<PaymentPage> createState() => _PaymentPageState();
 }
 
-class _Payment_PageState extends State<Payment_Page> {
+class _PaymentPageState extends State<PaymentPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,8 +35,11 @@ class _Payment_PageState extends State<Payment_Page> {
         height: 195,
         width: MediaQuery.of(context).size.width,
         decoration: const BoxDecoration(
-            borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(30), topRight: Radius.circular(30))),
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(30),
+            topRight: Radius.circular(30),
+          ),
+        ),
         child: Column(
           children: [
             const Row(
@@ -45,16 +48,18 @@ class _Payment_PageState extends State<Payment_Page> {
                 Text(
                   'Total Items',
                   style: TextStyle(
-                      fontSize: 16,
-                      fontStyle: FontStyle.normal,
-                      color: Colors.blueGrey),
+                    fontSize: 16,
+                    fontStyle: FontStyle.normal,
+                    color: Colors.blueGrey,
+                  ),
                 ),
                 Text(
                   '1',
                   style: TextStyle(
-                      fontSize: 16,
-                      fontStyle: FontStyle.normal,
-                      fontWeight: FontWeight.bold),
+                    fontSize: 16,
+                    fontStyle: FontStyle.normal,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ],
             ),
@@ -67,16 +72,18 @@ class _Payment_PageState extends State<Payment_Page> {
                 Text(
                   'Total Harga',
                   style: TextStyle(
-                      fontSize: 16,
-                      fontStyle: FontStyle.normal,
-                      color: Colors.blueGrey),
+                    fontSize: 16,
+                    fontStyle: FontStyle.normal,
+                    color: Colors.blueGrey,
+                  ),
                 ),
                 Text(
                   'IDR 7000',
                   style: TextStyle(
-                      fontSize: 16,
-                      fontStyle: FontStyle.normal,
-                      fontWeight: FontWeight.bold),
+                    fontSize: 16,
+                    fontStyle: FontStyle.normal,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ],
             ),
@@ -129,8 +136,10 @@ class _Payment_PageState extends State<Payment_Page> {
                           ),
                           Text(
                             '1 Item',
-                            style:
-                                TextStyle(fontSize: 12, color: Colors.blueGrey),
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: Colors.blueGrey,
+                            ),
                           ),
                           SizedBox(height: 15),
                           Text(

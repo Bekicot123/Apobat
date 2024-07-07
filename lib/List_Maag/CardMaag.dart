@@ -1,3 +1,4 @@
+import 'package:apobat/List_Maag/DetailMaag.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:apobat/List_Flu/DetailFlu.dart';
@@ -47,7 +48,7 @@ class _CardMaagState extends State<CardMaag> {
   Widget build(BuildContext context) {
     return InkWell(
         onTap: () {
-          Navigator.pushNamed(context, DetailFlu.routeName, arguments: id);
+          Navigator.pushNamed(context, DetailMaag.routeName, arguments: id);
         },
         child: Card(
           margin: const EdgeInsets.only(top: 8, bottom: 20, left: 8, right: 8),
