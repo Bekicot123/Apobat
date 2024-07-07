@@ -1,31 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:apobat/List_Flu/DetailFlu.dart';
 
 import 'DetailBatuk.dart';
 
-
-
 class CardBatuk extends StatefulWidget {
   final String? id;
-  const CardBatuk(this.id, {Key? key}) : super(key: key);
+  const CardBatuk(this.id, {super.key});
 
   @override
   State<CardBatuk> createState() => _CardBatukState();
 }
 
 class _CardBatukState extends State<CardBatuk> {
-
   String id = '';
-  String? image, name,deskripsi;
-  String harga='';
+  String? image, name, deskripsi;
+  String harga = '';
   FirebaseFirestore? firestore;
   CollectionReference? batuk;
 
   final TextEditingController nameController = TextEditingController();
   final TextEditingController hargaController = TextEditingController();
   final TextEditingController deskripsiController = TextEditingController();
-
 
   @override
   void initState() {
@@ -44,8 +39,7 @@ class _CardBatukState extends State<CardBatuk> {
       image = value.get('Gambar');
 
       if (mounted) {
-        setState(() {
-        });
+        setState(() {});
       }
     });
   }
@@ -53,9 +47,11 @@ class _CardBatukState extends State<CardBatuk> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-        onTap: () {Navigator.pushNamed(context, DetailBatuk.routeName, arguments: id);},
+        onTap: () {
+          Navigator.pushNamed(context, DetailBatuk.routeName, arguments: id);
+        },
         child: Card(
-          margin: const EdgeInsets.only(top:8,bottom: 20,left:8,right:8),
+          margin: const EdgeInsets.only(top: 8, bottom: 20, left: 8, right: 8),
           clipBehavior: Clip.antiAlias,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(14),
@@ -69,14 +65,16 @@ class _CardBatukState extends State<CardBatuk> {
                   child: ClipRRect(
                     borderRadius: const BorderRadius.vertical(
                         top: Radius.circular(14), bottom: Radius.circular(14)),
-                    child: image == null ? Image.network('https://th.bing.com/th/id/OIP.r4eciF-FM2-3WdhvxTmGEgHaHa?pid=ImgDet&rs=1')
+                    child: image == null
+                        ? Image.network(
+                            'https://th.bing.com/th/id/OIP.r4eciF-FM2-3WdhvxTmGEgHaHa?pid=ImgDet&rs=1')
                         : Image.network(
-                      image??'',
-                      fit: BoxFit.cover,
-                    ),
+                            image ?? '',
+                            fit: BoxFit.cover,
+                          ),
                   ),
                 )),
-            SizedBox(
+            const SizedBox(
               width: 10,
             ),
             Column(
@@ -86,30 +84,27 @@ class _CardBatukState extends State<CardBatuk> {
                 SizedBox(
                   width: 150,
                   child: Text(
-                    name??'',
+                    name ?? '',
                     maxLines: 1,
                     overflow: TextOverflow.fade,
                     softWrap: false,
-                    style: TextStyle(fontSize: 17, color: Colors.black),
+                    style: const TextStyle(fontSize: 17, color: Colors.black),
                   ),
                 ),
                 const SizedBox(height: 7),
                 SizedBox(
                   width: 150,
                   child: Text(
-                    "Rp."+harga??'',
+                    "Rp.$harga" ?? '',
                     maxLines: 1,
                     overflow: TextOverflow.fade,
                     softWrap: false,
-                    style: TextStyle(fontSize: 17, color: Colors.black),
+                    style: const TextStyle(fontSize: 17, color: Colors.black),
                   ),
                 ),
               ],
             ),
-
           ]),
-        )
-
-    );
+        ));
   }
 }

@@ -13,16 +13,16 @@ class _AboutState extends State<About> {
     return Scaffold(
       body: SafeArea(
         child: ListView(
-          padding: EdgeInsets.fromLTRB(24, 30, 24, 30),
+          padding: const EdgeInsets.fromLTRB(24, 30, 24, 30),
           children: [
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 InkWell(
-                  onTap: (){
+                  onTap: () {
                     Navigator.pop(context);
                   },
-                  child: Icon(
+                  child: const Icon(
                     Icons.arrow_back_rounded,
                     size: 25,
                     color: Colors.blue,
@@ -32,46 +32,69 @@ class _AboutState extends State<About> {
             ),
             Column(
               children: [
-                SizedBox(height: 20,),
+                const SizedBox(
+                  height: 20,
+                ),
                 Text(
-                  "APOBAT", style: TextStyle(fontSize:38,fontWeight: FontWeight.bold,
+                  "APOBAT",
+                  style: TextStyle(
+                      fontSize: 38,
+                      fontWeight: FontWeight.bold,
                       color: Color(hexColor("#2E9DFA"))),
                 ),
-                SizedBox(height: 5,),
-                Text(
-                    "Version 1.0.0", style: TextStyle(fontSize: 15, color: Colors.blueGrey),
+                const SizedBox(
+                  height: 5,
                 ),
-                SizedBox(height: 5,),
+                const Text(
+                  "Version 1.0.0",
+                  style: TextStyle(fontSize: 15, color: Colors.blueGrey),
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
                 Image.asset(
-                    "lib/Image/pills.png",
+                  "lib/Image/pills.png",
                   width: 100,
                 ),
-                SizedBox(height: 15,),
-                Text(
+                const SizedBox(
+                  height: 15,
+                ),
+                const Text(
                   "2023 | Ronggo Haikal & George A.Talakua",
                   style: TextStyle(fontSize: 16),
                 ),
-                SizedBox(height: 15,),
-                Text(
-                    "Support By :",
-                  style: TextStyle(fontSize: 16,color: Colors.blueGrey),
+                const SizedBox(
+                  height: 15,
                 ),
-                SizedBox(height: 15,),
-                Text(
+                const Text(
+                  "Support By :",
+                  style: TextStyle(fontSize: 16, color: Colors.blueGrey),
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
+                const Text(
                   "Sekolah Tinggi Informatika & Komputer",
                   style: TextStyle(fontSize: 16),
                 ),
-                SizedBox(height: 5,),
-                Text(
+                const SizedBox(
+                  height: 5,
+                ),
+                const Text(
                   "Indonesia",
                   style: TextStyle(fontSize: 16),
                 ),
-                SizedBox(height: 15,),
+                const SizedBox(
+                  height: 15,
+                ),
                 Text(
                   "www.stiki.ac.id",
-                  style: TextStyle(fontSize: 16,color: Color(hexColor("#2E9DFA"))),
+                  style: TextStyle(
+                      fontSize: 16, color: Color(hexColor("#2E9DFA"))),
                 ),
-                SizedBox(height: 15,),
+                const SizedBox(
+                  height: 15,
+                ),
                 Image.asset(
                   "lib/Image/stiki.png",
                   width: 120,
@@ -86,7 +109,7 @@ class _AboutState extends State<About> {
 }
 
 int hexColor(String color) {
-  String newColor = '0xff' + color;
+  String newColor = '0xff$color';
   newColor = newColor.replaceAll('#', '');
   int finalColor = int.parse(newColor);
   return finalColor;

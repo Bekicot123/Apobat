@@ -1,13 +1,9 @@
-import 'package:apobat/Component/CardCategory.dart';
 import 'package:apobat/List_Batuk/ListBatuk.dart';
 import 'package:apobat/List_Flu/ListFlu.dart';
 import 'package:apobat/List_Vitamin/ListVitamin.dart';
 import 'package:apobat/Page/About.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:apobat/Page/Akun_Page.dart';
-import 'package:apobat/Page/Cart_Page.dart';
 import 'package:apobat/Page/Help.dart';
-import 'package:apobat/Page/Home_Page.dart';
 import 'package:apobat/Page/drawer.dart';
 import 'package:flutter/material.dart';
 
@@ -18,6 +14,8 @@ import '../List_Maag/ListMaag.dart';
 class Landing_Page extends StatefulWidget {
   static const routeName = '/Landing_Page';
   final user = FirebaseAuth.instance.currentUser!;
+
+  Landing_Page({super.key});
 
   @override
   State<Landing_Page> createState() => _Landing_PageState();
@@ -66,7 +64,7 @@ class _Landing_PageState extends State<Landing_Page> {
       ),
       body: SafeArea(
         child: ListView(
-          padding: EdgeInsets.fromLTRB(24, 30, 24, 30),
+          padding: const EdgeInsets.fromLTRB(24, 30, 24, 30),
           children: [
             Row(
               children: [
@@ -77,10 +75,10 @@ class _Landing_PageState extends State<Landing_Page> {
                       'lib/Image/logo.png',
                       width: 170,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 16,
                     ),
-                    Text(
+                    const Text(
                       'Find a medicine or\nvitamins with APOBAT!',
                       style: TextStyle(fontSize: 16, color: Colors.blueGrey),
                     ),
@@ -88,11 +86,11 @@ class _Landing_PageState extends State<Landing_Page> {
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 24,
             ),
             Container(
-              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 5),
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
               height: 55,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
@@ -110,10 +108,10 @@ class _Landing_PageState extends State<Landing_Page> {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 32,
             ),
-            Text(
+            const Text(
               'Pharmacy Service by Category',
               style: TextStyle(
                 fontSize: 15,
@@ -128,9 +126,9 @@ class _Landing_PageState extends State<Landing_Page> {
                   child: InkWell(
                     onTap: () {
                       Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const VitaminList()));
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const VitaminList()));
                     },
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
@@ -139,10 +137,10 @@ class _Landing_PageState extends State<Landing_Page> {
                           'lib/Image/vitamins.png',
                           width: 60,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
-                        Text(
+                        const Text(
                           "Vitamin",
                           style: TextStyle(
                               fontSize: 15, fontWeight: FontWeight.bold),
@@ -167,10 +165,10 @@ class _Landing_PageState extends State<Landing_Page> {
                           'lib/Image/flu.png',
                           width: 60,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
-                        Text(
+                        const Text(
                           "Flu",
                           style: TextStyle(
                               fontSize: 15, fontWeight: FontWeight.bold),
@@ -195,10 +193,10 @@ class _Landing_PageState extends State<Landing_Page> {
                           'lib/Image/cough.png',
                           width: 60,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
-                        Text(
+                        const Text(
                           "Batuk",
                           style: TextStyle(
                               fontSize: 15, fontWeight: FontWeight.bold),
@@ -223,10 +221,10 @@ class _Landing_PageState extends State<Landing_Page> {
                           'lib/Image/sick.png',
                           width: 60,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
-                        Text(
+                        const Text(
                           "Demam",
                           style: TextStyle(
                               fontSize: 15, fontWeight: FontWeight.bold),
@@ -251,10 +249,10 @@ class _Landing_PageState extends State<Landing_Page> {
                           'lib/Image/children.png',
                           width: 60,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
-                        Text(
+                        const Text(
                           "Anak",
                           style: TextStyle(
                               fontSize: 15, fontWeight: FontWeight.bold),
@@ -279,10 +277,10 @@ class _Landing_PageState extends State<Landing_Page> {
                           'lib/Image/maag.png',
                           width: 60,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
-                        Text(
+                        const Text(
                           "Maag",
                           style: TextStyle(
                               fontSize: 15, fontWeight: FontWeight.bold),
@@ -301,7 +299,7 @@ class _Landing_PageState extends State<Landing_Page> {
 }
 
 int hexColor(String color) {
-  String newColor = '0xff' + color;
+  String newColor = '0xff$color';
   newColor = newColor.replaceAll('#', '');
   int finalColor = int.parse(newColor);
   return finalColor;

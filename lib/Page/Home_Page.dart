@@ -13,10 +13,12 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        actions: [IconButton(onPressed: signUserOut, icon: Icon(Icons.logout))],
+        actions: [
+          IconButton(onPressed: signUserOut, icon: const Icon(Icons.logout))
+        ],
       ),
       body: Center(
-        child: Text('Selamat datang '+ user.email!),
+        child: Text('Selamat datang ${user.email!}'),
       ),
     );
   }
