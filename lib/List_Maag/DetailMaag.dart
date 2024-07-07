@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
 import '../Component/ButtonCart.dart';
 
 class DetailMaag extends StatefulWidget {
@@ -37,6 +37,25 @@ class _DetailMaagState extends State<DetailMaag> {
       image = value.get('Gambar');
       setState(() {});
     });
+  }
+
+  void _addToCart() async {
+    User? user = FirebaseAuth.instance.currentUser;
+
+    if (user != null) {
+      DocumentReference cartRef = FirebaseFirestore.instance.collection('Users').doc(user.email);
+
+      await cartRef.update({
+        'cart': FieldValue.arrayUnion([
+          {
+            'name': name,
+            'price': int.parse(harga),
+            'image': image,
+            'quantity': 1, // You can allow the user to specify quantity if needed.
+          }
+        ]),
+      });
+    }
   }
 
   @override
@@ -147,7 +166,7 @@ class _DetailMaagState extends State<DetailMaag> {
             const SizedBox(
               height: 10,
             ),
-            MyButtonCart(onTap: () {}, text: 'Tambah Keranjang'),
+            MyButtonCart(onTap: _addToCart, text: 'Tambah Keranjang'),
           ]),
         ));
   }

@@ -18,17 +18,21 @@ class _CartPageState extends State<CartPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: const Center(
-        child: Text('Keranjang'),
-      )),
+        title: const Center(
+          child: Text('Keranjang'),
+        ),
+      ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: Container(
         padding: const EdgeInsets.all(24),
         height: 195,
         width: MediaQuery.of(context).size.width,
         decoration: const BoxDecoration(
-            borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(30), topRight: Radius.circular(30))),
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(30),
+            topRight: Radius.circular(30),
+          ),
+        ),
         child: Column(
           children: [
             const Row(
@@ -37,16 +41,18 @@ class _CartPageState extends State<CartPage> {
                 Text(
                   'Total Items',
                   style: TextStyle(
-                      fontSize: 16,
-                      fontStyle: FontStyle.normal,
-                      color: Colors.blueGrey),
+                    fontSize: 16,
+                    fontStyle: FontStyle.normal,
+                    color: Colors.blueGrey,
+                  ),
                 ),
                 Text(
                   '-',
                   style: TextStyle(
-                      fontSize: 16,
-                      fontStyle: FontStyle.normal,
-                      fontWeight: FontWeight.bold),
+                    fontSize: 16,
+                    fontStyle: FontStyle.normal,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ],
             ),
@@ -59,129 +65,69 @@ class _CartPageState extends State<CartPage> {
                 Text(
                   'Total Harga',
                   style: TextStyle(
-                      fontSize: 16,
-                      fontStyle: FontStyle.normal,
-                      color: Colors.blueGrey),
+                    fontSize: 16,
+                    fontStyle: FontStyle.normal,
+                    color: Colors.blueGrey,
+                  ),
                 ),
                 Text(
                   'IDR -,',
                   style: TextStyle(
-                      fontSize: 16,
-                      fontStyle: FontStyle.normal,
-                      fontWeight: FontWeight.bold),
+                    fontSize: 16,
+                    fontStyle: FontStyle.normal,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ],
             ),
             const SizedBox(
               height: 25,
             ),
-            MyButtonCart(onTap: () {}, text: 'Check Out')
+            MyButtonCart(onTap: () {}, text: 'Check Out'),
           ],
         ),
       ),
       body: StreamBuilder<DocumentSnapshot>(
-        stream: FirebaseFirestore.instance
-            .collection("Users")
-            .doc(currentUser.email)
-            .snapshots(),
+        stream: usersCollection.doc(currentUser.email).snapshots(),
         builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            final userData = snapshot.data!.data() as Map<String, dynamic>;
-
-            return ListView(
-              children: [
-                Container(
-                  padding: const EdgeInsets.all(24),
-                  height: 166,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        "Delivery Destination",
-                        style: TextStyle(fontSize: 16),
-                      ),
-                      const SizedBox(
-                        height: 16,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "Name",
-                            style: TextStyle(
-                                fontSize: 14, color: Colors.grey[700]),
-                          ),
-                          Text(
-                            userData['fullname'],
-                            style: const TextStyle(fontSize: 14),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 8,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "Address",
-                            style: TextStyle(
-                                fontSize: 14, color: Colors.grey[700]),
-                          ),
-                          Text(
-                            userData['address'],
-                            style: const TextStyle(fontSize: 14),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-                Container(
-                  padding: const EdgeInsets.all(24),
-                  color: Colors.white,
-                  child: const Column(
-                    children: [
-                      Text(
-                        'Oops!! No Product in Cart!',
-                        style: TextStyle(
-                            fontSize: 17,
-                            fontStyle: FontStyle.italic,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.red),
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(
-                  height: 100,
-                ),
-                Container(
-                  padding: const EdgeInsets.all(24),
-                  color: Colors.white,
-                  child: const Column(
-                    children: [
-                      Text(
-                        'Pilih Metode Pembayaran',
-                        style: TextStyle(
-                          fontSize: 15,
-                          fontStyle: FontStyle.italic,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            );
-          } else if (snapshot.hasError) {
-            return Center(
-              child: Text('Error${snapshot.error}'),
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(
+              child: CircularProgressIndicator(),
             );
           }
 
-          return const Center(
-            child: CircularProgressIndicator(),
+          if (snapshot.hasError) {
+            return Center(
+              child: Text('Error: ${snapshot.error}'),
+            );
+          }
+
+          if (!snapshot.hasData || snapshot.data!.data() == null) {
+            return const Center(
+              child: Text('No data available'),
+            );
+          }
+
+          final userData = snapshot.data!.data() as Map<String, dynamic>;
+          final cartItems = userData['cart'] as List<dynamic>?;
+
+          if (cartItems == null || cartItems.isEmpty) {
+            return const Center(
+              child: Text('Oops!! No Product in Cart!'),
+            );
+          }
+
+          return ListView.builder(
+            itemCount: cartItems.length,
+            itemBuilder: (context, index) {
+              final item = cartItems[index] as Map<String, dynamic>;
+              return ListTile(
+                leading: Image.network(item['image'] ?? 'https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg'),
+                title: Text(item['name']),
+                subtitle: Text('Rp ${item['price']}'),
+                trailing: Text('Quantity: ${item['quantity']}'),
+              );
+            },
           );
         },
       ),

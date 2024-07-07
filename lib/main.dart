@@ -1,4 +1,3 @@
-import 'package:apobat/List_Vitamin/DetailVitamin.dart';
 import 'package:apobat/Page/Landing_Page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +8,7 @@ import 'List_Batuk/DetailBatuk.dart';
 import 'List_Demam/DetailDemam.dart';
 import 'List_Flu/DetailFlu.dart';
 import 'List_Maag/DetailMaag.dart';
+import 'List_Vitamin/DetailVitamin.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

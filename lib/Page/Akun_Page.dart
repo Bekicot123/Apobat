@@ -79,73 +79,87 @@ class _AkunPageState extends State<AkunPage> {
             .doc(currentUser.email)
             .snapshots(),
         builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            final userData = snapshot.data!.data() as Map<String, dynamic>;
-
-            return ListView(
-              children: [
-                const SizedBox(
-                  height: 50,
-                ),
-                // profile pic
-                const Icon(
-                  Icons.person,
-                  size: 72,
-                  color: Colors.blue,
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-
-                // user email
-                Text(
-                  currentUser.email!,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(color: Colors.grey[700]),
-                ),
-
-                const SizedBox(
-                  height: 50,
-                ),
-
-                Padding(
-                  padding: const EdgeInsets.only(left: 25.0),
-                  child: Text(
-                    'My Details',
-                    style: TextStyle(color: Colors.grey[600]),
-                  ),
-                ),
-
-                // username
-                MyTextBox(
-                  text: userData['username'],
-                  sectionName: 'username',
-                  onPressed: () => editField('username'),
-                ),
-
-                //user fullname
-                MyTextBox(
-                  text: userData['fullname'],
-                  sectionName: 'fullname',
-                  onPressed: () => editField('fullname'),
-                ),
-
-                // user address
-                MyTextBox(
-                  text: userData['address'],
-                  sectionName: 'address',
-                  onPressed: () => editField('address'),
-                ),
-              ],
-            );
-          } else if (snapshot.hasError) {
-            return Center(
-              child: Text('Error${snapshot.error}'),
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(
+              child: CircularProgressIndicator(),
             );
           }
 
-          return const Center(
-            child: CircularProgressIndicator(),
+          if (snapshot.hasError) {
+            return Center(
+              child: Text('Error: ${snapshot.error}'),
+            );
+          }
+
+          if (!snapshot.hasData || snapshot.data == null) {
+            return const Center(
+              child: Text('No data available'),
+            );
+          }
+
+          final userData = snapshot.data!.data() as Map<String, dynamic>?;
+
+          if (userData == null) {
+            return const Center(
+              child: Text('No user data found'),
+            );
+          }
+
+          return ListView(
+            children: [
+              const SizedBox(
+                height: 50,
+              ),
+              // profile pic
+              const Icon(
+                Icons.person,
+                size: 72,
+                color: Colors.blue,
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+
+              // user email
+              Text(
+                currentUser.email!,
+                textAlign: TextAlign.center,
+                style: TextStyle(color: Colors.grey[700]),
+              ),
+
+              const SizedBox(
+                height: 50,
+              ),
+
+              Padding(
+                padding: const EdgeInsets.only(left: 25.0),
+                child: Text(
+                  'My Details',
+                  style: TextStyle(color: Colors.grey[600]),
+                ),
+              ),
+
+              // username
+              MyTextBox(
+                text: userData['username'] ?? 'No username',
+                sectionName: 'username',
+                onPressed: () => editField('username'),
+              ),
+
+              // user fullname
+              MyTextBox(
+                text: userData['fullname'] ?? 'No fullname',
+                sectionName: 'fullname',
+                onPressed: () => editField('fullname'),
+              ),
+
+              // user address
+              MyTextBox(
+                text: userData['address'] ?? 'No address',
+                sectionName: 'address',
+                onPressed: () => editField('address'),
+              ),
+            ],
           );
         },
       ),

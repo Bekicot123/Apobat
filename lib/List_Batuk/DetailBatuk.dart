@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-
+import 'package:firebase_auth/firebase_auth.dart';
 import '../Component/ButtonCart.dart';
 
 class DetailBatuk extends StatefulWidget {
@@ -37,6 +37,26 @@ class _DetailBatukState extends State<DetailBatuk> {
       image = value.get('Gambar');
       setState(() {});
     });
+  }
+
+  void addToCart() async {
+    final currentUser = FirebaseAuth.instance.currentUser!;
+    final userDoc = FirebaseFirestore.instance.collection('Users').doc(currentUser.email);
+    
+    // Fetch the current cart
+    DocumentSnapshot userSnapshot = await userDoc.get();
+    List<dynamic> cart = userSnapshot.get('cart') ?? [];
+
+    // Add new item to cart
+    cart.add({
+      'name': name,
+      'price': harga,
+      'quantity': 1,
+      'image': image,
+    });
+
+    // Update the cart in Firestore
+    await userDoc.update({'cart': cart});
   }
 
   @override
@@ -147,7 +167,7 @@ class _DetailBatukState extends State<DetailBatuk> {
             const SizedBox(
               height: 10,
             ),
-            MyButtonCart(onTap: () {}, text: 'Tambah Keranjang'),
+            MyButtonCart(onTap: addToCart, text: 'Tambah Keranjang'),
           ]),
         ));
   }
