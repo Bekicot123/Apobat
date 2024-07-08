@@ -6,6 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:apobat/Page/Help.dart';
 import 'package:apobat/Page/drawer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../List_Anak/ListAnak.dart';
 import '../List_Demam/ListDemam.dart';
@@ -57,6 +58,7 @@ class _Landing_PageState extends State<Landing_Page> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromARGB(255, 12, 126, 69),
       drawer: MyDrawer(
         onAboutTap: goToAboutPage, //goToAboutPage
         onHelpTap: goToHelpPage,
@@ -72,15 +74,15 @@ class _Landing_PageState extends State<Landing_Page> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Image.asset(
-                      'lib/Image/logo.png',
+                      'lib/Image/logo2.png',
                       width: 170,
                     ),
                     const SizedBox(
                       height: 16,
                     ),
                     const Text(
-                      'Find a medicine or\nvitamins with APOBAT!',
-                      style: TextStyle(fontSize: 16, color: Colors.blueGrey),
+                      'Find a medicine or\nvitamins with MEDILIFE',
+                      style: TextStyle(fontSize: 16, color: Colors.white),
                     ),
                   ],
                 ),
@@ -89,34 +91,38 @@ class _Landing_PageState extends State<Landing_Page> {
             const SizedBox(
               height: 24,
             ),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
-              height: 55,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
-                color: Color(hexColor('#DEF7FF')),
-              ),
-              child: TextField(
-                decoration: InputDecoration(
-                  border: InputBorder.none,
-                  prefixIcon: Icon(
-                    Icons.search,
-                    color: Color(hexColor('#81E1FF')),
-                  ),
-                  hintText: 'Search medicine ...',
-                  hintStyle: TextStyle(color: Color(hexColor('#81E1FF'))),
-                ),
-              ),
-            ),
-            const SizedBox(
-              height: 32,
-            ),
+            // Container(
+            //   padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
+            //   height: 55,
+            //   decoration: BoxDecoration(
+            //     borderRadius: BorderRadius.circular(8),
+            //     color: Color(hexColor('#DEF7FF')),
+            //   ),
+            //   child: TextField(
+            //     decoration: InputDecoration(
+            //       border: InputBorder.none,
+            //       prefixIcon: Icon(
+            //         Icons.search,
+            //         color: Color(hexColor('#81E1FF')),
+            //       ),
+            //       hintText: 'Search medicine ...',
+            //       hintStyle: TextStyle(color: Color(hexColor('#81E1FF'))),
+            //     ),
+            //   ),
+            // ),
+            // const SizedBox(
+            //   height: 24,
+            // ),
+
             const Text(
               'Pharmacy Service by Category',
               style: TextStyle(
                 fontSize: 15,
+                color: Color(
+                    0xFFFCF8F3), // Menggunakan kode hex dan konstruktor Color
               ),
             ),
+
             GridView.count(
               shrinkWrap: true,
               crossAxisCount: 2,
