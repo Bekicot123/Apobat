@@ -18,7 +18,7 @@ class MyButtonCart extends StatelessWidget {
         padding: const EdgeInsets.all(17),
         margin: const EdgeInsets.symmetric(horizontal: 4),
         decoration: BoxDecoration(
-          color: Color(hexColor('#FFCD00')),
+          color: Color.fromARGB(255, 12, 126, 69),
           borderRadius: BorderRadius.circular(8),
         ),
         child: Center(

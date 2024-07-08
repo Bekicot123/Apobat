@@ -69,7 +69,7 @@ class _AkunPageState extends State<AkunPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Center(
-          child: Text('P r o f i l e'),
+          child: Text('Profile'),
         ),
         //title: Text(user.email!),
       ),
@@ -114,7 +114,7 @@ class _AkunPageState extends State<AkunPage> {
               const Icon(
                 Icons.person,
                 size: 72,
-                color: Colors.blue,
+                color: Color.fromARGB(255, 12, 126, 69),
               ),
               const SizedBox(
                 height: 10,

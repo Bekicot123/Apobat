@@ -66,7 +66,7 @@ class _RegisterPageState extends State<RegisterPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: Colors.white,
+      backgroundColor: Color.fromARGB(255, 12, 126, 69),
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
@@ -77,15 +77,15 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
                 SizedBox(
                   height: 100,
-                  child: Image.asset('lib/Image/pills.png'),
+                  child: Image.asset('lib/Image/medic.png'),
                 ),
                 const SizedBox(
                   height: 20,
                 ),
                 Text(
-                  'APOBAT',
+                  'MEDILIFE',
                   style: TextStyle(
-                    color: Color(hexColor('#2E9DFA')),
+                    color: Color(hexColor('#FCF8F3')),
                     fontSize: 25,
                     fontWeight: FontWeight.bold,
                   ),
@@ -95,47 +95,64 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
                 MyTextField(
                   controller: usernameController,
-                  hintText: 'Username',
-                  obscureText: false,
+                  decoration: InputDecoration(
+                    hintStyle: TextStyle(color: Color(0xFFFFCD00)), // Konversi warna hex ke Color
+                    ),
+                  obscureText: false, hintText: 'Username',
                 ),
                 const SizedBox(
                   height: 20,
                 ),
                 MyTextField(
                   controller: namaController,
-                  hintText: 'Nama Lengkap',
-                  obscureText: false,
+                  decoration: InputDecoration(
+                    hintStyle: TextStyle(color: Color(0xFFFFCD00)), // Konversi warna hex ke Color
+                    ),
+                  obscureText: false, hintText: 'Name',
                 ),
                 const SizedBox(
                   height: 20,
                 ),
                 MyTextField(
                   controller: alamatController,
-                  hintText: 'Alamat',
-                  obscureText: false,
+                  decoration: InputDecoration(
+                    hintStyle: TextStyle(color: Color(0xFFFFCD00)), // Konversi warna hex ke Color
+                    ),
+                  obscureText: false, hintText: 'Alamat',
                 ),
                 const SizedBox(
                   height: 20,
                 ),
                 MyTextField(
                   controller: emailController,
-                  hintText: 'Email',
-                  obscureText: false,
+                  decoration: InputDecoration(
+                    hintStyle: TextStyle(color: Color(0xFFFFCD00)), // Konversi warna hex ke Color
+                    ),
+                  obscureText: false, hintText: 'Email',
                 ),
                 const SizedBox(
                   height: 20,
                 ),
                 MyTextField(
                   controller: passwordController,
-                  hintText: 'Password',
-                  obscureText: true,
+                  decoration: InputDecoration(
+                    hintStyle: TextStyle(color: Color(0xFFFFCD00)), // Konversi warna hex ke Color
+                    ),
+                  obscureText: false, hintText: 'Password',
                 ),
                 const SizedBox(
                   height: 20,
                 ),
-                MyButton(
-                  text: "Daftar",
-                  onTap: signUp,
+                ElevatedButton(
+                  onPressed: signUp,
+                  style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.white, // warna latar belakang tombol
+                  ),
+                    child: Text('Daftar',
+                    style: TextStyle(
+                    color: Colors.black, // warna teks
+                    ),
+                  ),
                 ),
                 const SizedBox(
                   height: 20,
@@ -145,7 +162,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   children: [
                     Text(
                       'Sudah Punya Akun ?',
-                      style: TextStyle(color: Color(hexColor('#2E9DFA'))),
+                      style: TextStyle(color: Color(hexColor('#FCF8F3'))),
                     ),
                     const SizedBox(
                       width: 4,
