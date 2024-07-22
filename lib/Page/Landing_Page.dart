@@ -128,7 +128,7 @@ class _Landing_PageState extends State<Landing_Page> {
               crossAxisCount: 2,
               children: <Widget>[
                 Card(
-                  margin: const EdgeInsets.all(30.0),
+                  margin: const EdgeInsets.all(15.0),
                   child: InkWell(
                     onTap: () {
                       Navigator.push(
@@ -142,9 +142,10 @@ class _Landing_PageState extends State<Landing_Page> {
                         Image.asset(
                           'lib/Image/vitamins.png',
                           width: 60,
+                          height: 100,
                         ),
                         const SizedBox(
-                          height: 10,
+                          height: 0,
                         ),
                         const Text(
                           "Vitamin",
@@ -156,7 +157,7 @@ class _Landing_PageState extends State<Landing_Page> {
                   ),
                 ),
                 Card(
-                  margin: const EdgeInsets.all(30.0),
+                  margin: const EdgeInsets.all(15.0),
                   child: InkWell(
                     onTap: () {
                       Navigator.push(
@@ -170,9 +171,10 @@ class _Landing_PageState extends State<Landing_Page> {
                         Image.asset(
                           'lib/Image/flu.png',
                           width: 60,
+                          height: 100,
                         ),
                         const SizedBox(
-                          height: 10,
+                          height: 0,
                         ),
                         const Text(
                           "Flu",
@@ -184,7 +186,7 @@ class _Landing_PageState extends State<Landing_Page> {
                   ),
                 ),
                 Card(
-                  margin: const EdgeInsets.all(30.0),
+                  margin: const EdgeInsets.all(15.0),
                   child: InkWell(
                     onTap: () {
                       Navigator.push(
@@ -198,9 +200,10 @@ class _Landing_PageState extends State<Landing_Page> {
                         Image.asset(
                           'lib/Image/cough.png',
                           width: 60,
+                          height: 100,
                         ),
                         const SizedBox(
-                          height: 10,
+                          height: 0,
                         ),
                         const Text(
                           "Batuk",
@@ -212,7 +215,7 @@ class _Landing_PageState extends State<Landing_Page> {
                   ),
                 ),
                 Card(
-                  margin: const EdgeInsets.all(30.0),
+                  margin: const EdgeInsets.all(15.0),
                   child: InkWell(
                     onTap: () {
                       Navigator.push(
@@ -226,9 +229,10 @@ class _Landing_PageState extends State<Landing_Page> {
                         Image.asset(
                           'lib/Image/sick.png',
                           width: 60,
+                          height: 100,
                         ),
                         const SizedBox(
-                          height: 10,
+                          height: 0,
                         ),
                         const Text(
                           "Demam",
@@ -240,7 +244,7 @@ class _Landing_PageState extends State<Landing_Page> {
                   ),
                 ),
                 Card(
-                  margin: const EdgeInsets.all(30.0),
+                  margin: const EdgeInsets.all(15.0),
                   child: InkWell(
                     onTap: () {
                       Navigator.push(
@@ -254,9 +258,10 @@ class _Landing_PageState extends State<Landing_Page> {
                         Image.asset(
                           'lib/Image/children.png',
                           width: 60,
+                          height: 100,
                         ),
                         const SizedBox(
-                          height: 10,
+                          height: 0,
                         ),
                         const Text(
                           "Anak",
@@ -268,7 +273,7 @@ class _Landing_PageState extends State<Landing_Page> {
                   ),
                 ),
                 Card(
-                  margin: const EdgeInsets.all(30.0),
+                  margin: const EdgeInsets.all(15.0),
                   child: InkWell(
                     onTap: () {
                       Navigator.push(
@@ -282,9 +287,10 @@ class _Landing_PageState extends State<Landing_Page> {
                         Image.asset(
                           'lib/Image/maag.png',
                           width: 60,
+                          height: 100,
                         ),
                         const SizedBox(
-                          height: 10,
+                          height: 0,
                         ),
                         const Text(
                           "Maag",
