@@ -2,6 +2,7 @@ import 'package:apobat/Component/ButtonCart.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:apobat/Page/Payment_Page.dart';
 
 class CartPage extends StatefulWidget {
   const CartPage({super.key});
@@ -13,6 +14,14 @@ class CartPage extends StatefulWidget {
 class _CartPageState extends State<CartPage> {
   final currentUser = FirebaseAuth.instance.currentUser!;
   final usersCollection = FirebaseFirestore.instance.collection("Users");
+
+  Future<void> _deleteCartItem(int index, List<dynamic> cartItems) async {
+    cartItems.removeAt(index);
+
+    await usersCollection.doc(currentUser.email).update({
+      'cart': cartItems,
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -83,7 +92,15 @@ class _CartPageState extends State<CartPage> {
             const SizedBox(
               height: 20,
             ),
-            MyButtonCart(onTap: () {}, text: 'Check Out'),
+            MyButtonCart(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => PaymentPage()),
+                );
+              },
+              text: 'Check Out',
+            ),
           ],
         ),
       ),
@@ -122,14 +139,40 @@ class _CartPageState extends State<CartPage> {
             itemBuilder: (context, index) {
               final item = cartItems[index] as Map<String, dynamic>;
               return ListTile(
-                leading: Image.network(item['image'] ?? 'https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg'),
+                leading: Image.network(item['image'] ??
+                    'https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg'),
                 title: Text(item['name']),
                 subtitle: Text('Rp ${item['price']}'),
-                trailing: Text('Quantity: ${item['quantity']}'),
+                trailing: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text('Quantity: ${item['quantity']}'),
+                    IconButton(
+                      icon: const Icon(Icons.delete),
+                      onPressed: () async {
+                        await _deleteCartItem(index, cartItems);
+                      },
+                    ),
+                  ],
+                ),
               );
             },
           );
         },
+      ),
+    );
+  }
+}
+
+class PaymentPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Payment Page'),
+      ),
+      body: Center(
+        child: Text('This is the payment page'),
       ),
     );
   }
