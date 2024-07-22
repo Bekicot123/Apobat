@@ -25,7 +25,7 @@ class _HelpState extends State<Help> {
                   child: const Icon(
                     Icons.arrow_back_rounded,
                     size: 25,
-                    color: Colors.blue,
+                    color: Color.fromARGB(255, 12, 126, 69),
                   ),
                 ),
               ],
@@ -36,11 +36,11 @@ class _HelpState extends State<Help> {
                   height: 10,
                 ),
                 Text(
-                  "Tips menggunakan aplikasi APOBAT",
+                  "Tips menggunakan aplikasi MEDILIFE",
                   style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
-                      color: Color(hexColor("#2E9DFA"))),
+                      color: Color.fromARGB(255, 12, 126, 69)),
                 ),
                 const SizedBox(
                   height: 5,

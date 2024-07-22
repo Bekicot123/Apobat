@@ -81,7 +81,7 @@ class _CartPageState extends State<CartPage> {
               ],
             ),
             const SizedBox(
-              height: 20,
+              height: 25,
             ),
             MyButtonCart(onTap: () {}, text: 'Check Out'),
           ],

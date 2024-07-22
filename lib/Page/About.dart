@@ -25,7 +25,7 @@ class _AboutState extends State<About> {
                   child: const Icon(
                     Icons.arrow_back_rounded,
                     size: 25,
-                    color: Colors.blue,
+                    color: Color.fromARGB(255, 12, 126, 69),
                   ),
                 ),
               ],
@@ -36,31 +36,43 @@ class _AboutState extends State<About> {
                   height: 20,
                 ),
                 Text(
-                  "APOBAT",
+                  "MEDILIFE",
                   style: TextStyle(
                       fontSize: 38,
                       fontWeight: FontWeight.bold,
-                      color: Color(hexColor("#2E9DFA"))),
+                      color: Color.fromARGB(255, 12, 126, 69)),
                 ),
                 const SizedBox(
                   height: 5,
                 ),
                 const Text(
-                  "Version 1.0.0",
+                  "Version 2.0.0",
                   style: TextStyle(fontSize: 15, color: Colors.blueGrey),
                 ),
                 const SizedBox(
                   height: 5,
                 ),
                 Image.asset(
-                  "lib/Image/pills.png",
+                  "lib/Image/medic.png",
                   width: 100,
                 ),
                 const SizedBox(
                   height: 15,
                 ),
                 const Text(
-                  "2023 | Ronggo Haikal & George A.Talakua",
+                  "2024",
+                  style: TextStyle(fontSize: 16),
+                ),
+                const Text(
+                  "Ardhiansyah Kurniawan",
+                  style: TextStyle(fontSize: 16),
+                ),
+                const Text(
+                  "Deva Pratama P",
+                  style: TextStyle(fontSize: 16),
+                ),
+                const Text(
+                  "Stefanus Raymond",
                   style: TextStyle(fontSize: 16),
                 ),
                 const SizedBox(
