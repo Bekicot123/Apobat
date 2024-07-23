@@ -2,6 +2,7 @@ import 'package:apobat/Component/text_boxt.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:apobat/Page/wishlist_page.dart'; // Import the wishlist page
 
 class AkunPage extends StatefulWidget {
   const AkunPage({super.key});
@@ -71,7 +72,6 @@ class _AkunPageState extends State<AkunPage> {
         title: const Center(
           child: Text('Profile'),
         ),
-        //title: Text(user.email!),
       ),
       body: StreamBuilder<DocumentSnapshot>(
         stream: FirebaseFirestore.instance
@@ -158,6 +158,23 @@ class _AkunPageState extends State<AkunPage> {
                 text: userData['address'] ?? 'No address',
                 sectionName: 'address',
                 onPressed: () => editField('address'),
+              ),
+
+              const SizedBox(height: 20),
+
+              // Wishlist button
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const WishlistPage()),
+                    );
+                  },
+                  child: const Text('Go to Wishlist'),
+                ),
               ),
             ],
           );

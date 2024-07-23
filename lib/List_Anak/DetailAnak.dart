@@ -43,7 +43,8 @@ class _DetailAnakState extends State<DetailAnak> {
     User? user = FirebaseAuth.instance.currentUser;
 
     if (user != null) {
-      DocumentReference cartRef = FirebaseFirestore.instance.collection('Users').doc(user.email);
+      DocumentReference cartRef =
+          FirebaseFirestore.instance.collection('Users').doc(user.email);
 
       await cartRef.update({
         'cart': FieldValue.arrayUnion([
@@ -51,7 +52,27 @@ class _DetailAnakState extends State<DetailAnak> {
             'name': name,
             'price': int.parse(harga),
             'image': image,
-            'quantity': 1, // You can allow the user to specify quantity if needed.
+            'quantity':
+                1, // You can allow the user to specify quantity if needed.
+          }
+        ]),
+      });
+    }
+  }
+
+  void _addToWishlist() async {
+    User? user = FirebaseAuth.instance.currentUser;
+
+    if (user != null) {
+      DocumentReference wishlistRef =
+          FirebaseFirestore.instance.collection('Users').doc(user.email);
+
+      await wishlistRef.update({
+        'wishlist': FieldValue.arrayUnion([
+          {
+            'name': name,
+            'price': int.parse(harga),
+            'image': image,
           }
         ]),
       });
@@ -166,7 +187,13 @@ class _DetailAnakState extends State<DetailAnak> {
             const SizedBox(
               height: 10,
             ),
-            MyButtonCart(onTap: _addToCart, text: 'Tambah Keranjang'),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                MyButtonCart(onTap: _addToCart, text: 'Tambah Keranjang'),
+                MyButtonCart(onTap: _addToWishlist, text: 'Tambah Wishlist'),
+              ],
+            ),
           ]),
         ));
   }
