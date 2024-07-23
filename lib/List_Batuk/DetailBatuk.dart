@@ -39,24 +39,44 @@ class _DetailBatukState extends State<DetailBatuk> {
     });
   }
 
-  void addToCart() async {
-    final currentUser = FirebaseAuth.instance.currentUser!;
-    final userDoc = FirebaseFirestore.instance.collection('Users').doc(currentUser.email);
-    
-    // Fetch the current cart
-    DocumentSnapshot userSnapshot = await userDoc.get();
-    List<dynamic> cart = userSnapshot.get('cart') ?? [];
+  void _addToCart() async {
+    User? user = FirebaseAuth.instance.currentUser;
 
-    // Add new item to cart
-    cart.add({
-      'name': name,
-      'price': harga,
-      'quantity': 1,
-      'image': image,
-    });
+    if (user != null) {
+      DocumentReference cartRef =
+          FirebaseFirestore.instance.collection('Users').doc(user.email);
 
-    // Update the cart in Firestore
-    await userDoc.update({'cart': cart});
+      await cartRef.update({
+        'cart': FieldValue.arrayUnion([
+          {
+            'name': name,
+            'price': int.parse(harga),
+            'image': image,
+            'quantity':
+                1, // You can allow the user to specify quantity if needed.
+          }
+        ]),
+      });
+    }
+  }
+
+  void _addToWishlist() async {
+    User? user = FirebaseAuth.instance.currentUser;
+
+    if (user != null) {
+      DocumentReference wishlistRef =
+          FirebaseFirestore.instance.collection('Users').doc(user.email);
+
+      await wishlistRef.update({
+        'wishlist': FieldValue.arrayUnion([
+          {
+            'name': name,
+            'price': int.parse(harga),
+            'image': image,
+          }
+        ]),
+      });
+    }
   }
 
   @override
@@ -167,7 +187,13 @@ class _DetailBatukState extends State<DetailBatuk> {
             const SizedBox(
               height: 10,
             ),
-            MyButtonCart(onTap: addToCart, text: 'Tambah Keranjang'),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                MyButtonCart(onTap: _addToCart, text: 'Tambah Keranjang'),
+                MyButtonCart(onTap: _addToWishlist, text: 'Tambah Wishlist'),
+              ],
+            )
           ]),
         ));
   }
